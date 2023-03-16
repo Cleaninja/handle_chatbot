@@ -1,18 +1,83 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@font-face {
+  font-family: "Roboto-Bold";
+  src: url("./assets/fonts/Roboto-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Roboto-Light";
+  src: url("./assets/fonts/Roboto-Light.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Roboto-Medium";
+  src: url("./assets/fonts/Roboto-Medium.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Roboto-Regular";
+  src: url("./assets/fonts/Roboto-Regular.ttf") format("truetype");
+}
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Roboto', 'Lato', 'Helvetica Neue', 'Arial', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #27272a;
+  background-color: #f6f9fd;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.primary-btn {
+  font-size: 18px;
+  font-weight: 300;
+  color: white;
+  background-color: #5479f7;
+  box-shadow: 0px 2px 0px #2f5bf3;
+  border-radius: 5px;
+}
+.primary-btn:hover {
+  background-color: #2f5bf3;
+}
+
+h1 {
+  font-weight: 600 !important;
+  font-size: 48px !important;
+  line-height: 27px;
+  text-align: center;
+  color: #1e1e1e;
+}
+h2 {
+  font-weight: 600 !important;
+  font-size: 38px !important;
+  line-height: 27px;
+  color: #1e1e1e;
+}
+h3 {
+  font-weight: 600 !important;
+  font-size: 32px !important;
+  line-height: 27px;
+  color: #1e1e1e;
+}
+h4 {
+  font-weight: 800 !important;
+  font-size: 24px !important;
+  line-height: 27px;
+  color: #1e1e1e;
+}
+.text {
+  font-weight: 300 !important;
+  font-size: 24px !important;
+  line-height: 27px;
+  color: #1e1e1e;
+}
+.capture {
+  font-weight: 400 !important;
+  font-size: 20px !important;
+  line-height: 27px;
+  color: #1e1e1e;
 }

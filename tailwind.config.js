@@ -1,19 +1,21 @@
 module.exports = {
-  mode: 'jit',
-  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
+  mode: "jit",
+  purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
   darkMode: false,
   theme: {
     extend: {
       backgroundColor: {
-        'main': '#5479F7',
-        'main-active': '#2B58F1',
+        "main": "#5479F7",
+        "main-active": "#2B58F1",
+        "img-strok": "#9EBDFF",
+        "strok-divider": "#BBBBBB",
       },
       padding: {
-        'container': '186px'
+        container: "186px",
       },
-      top: {
-        '1px': '1px'
-      }
+      height: {
+        74: "74px",
+      },
     },
   },
   variants: {
