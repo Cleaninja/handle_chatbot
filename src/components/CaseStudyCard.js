@@ -11,10 +11,12 @@ export default function CaseStudyCard({ title = "", explain = "" }) {
           alt="case"
         />
       </div>
-      <p className="text pt-6">{title}</p>
-      <p className="capture pt-6">{explain}</p>
+      <p className="text-2xl font-medium float-left pt-1 ml-5">{title}</p>
+      <p className="capture float-left pt-1 ml-5">{explain}</p>
+
       <Button
-        className="flex justify-center items-center mt-8 mx-auto"
+        size="large"
+        className="flex justify-center items-center mt-20 ml-5"
         type="primary"
         ghost
       >

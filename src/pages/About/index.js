@@ -34,7 +34,7 @@ export default function About() {
             </div>
           </Col>
           <Col sm={24} md={24} lg={12} xl={12}>
-            <div className="mt-0 p-0 md:py-16 md:mt-5 flex justify-center">
+            <div className="mt-0 p-0 md:py-16 md:mt-5 flex justify-center float-right">
               <video
                 className="video"
                 src="https://file-examples.com/wp-content/uploads/2017/04/file_example_MP4_480_1_5MG.mp4"
@@ -130,9 +130,7 @@ export default function About() {
           </Row>
         </div>
       </div>
-      <div className="bg-white flex px-4 md:px-8 lg:px-12 xl:px-container">
-        <CTA />
-      </div>
+      <CTA />
     </Layout>
   );
 }
