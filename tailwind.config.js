@@ -10,6 +10,12 @@ module.exports = {
         "img-strok": "#9EBDFF",
         "strok-divider": "#BBBBBB",
       },
+      textColor: {
+        "main": "#5479F7",
+        "main-active": "#2B58F1",
+        "img-strok": "#9EBDFF",
+        "strok-divider": "#BBBBBB",
+      },
       padding: {
         container: "186px",
       },
