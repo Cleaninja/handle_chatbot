@@ -75,7 +75,7 @@ export default function Footer() {
     );
   };
   return (
-    <div className="px-4 md:px-8 lg:px-12 xl:px-container">
+    <div className="px-4 md:px-8 lg:px-12 xl:px-container mt-10">
       <Row gutter={[16, 16]} justify={"space-between"} align="top">
         <Col xs={24} sm={24} md={6} lg={6} className="text-center md:text-left">
           <Space size={6} direction="vertical">
