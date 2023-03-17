@@ -5,6 +5,7 @@ import "./home.css";
 import FeatureCard from "./FeatureCard";
 import CaseStudyCard from "../../components/CaseStudyCard";
 import Testimonitial from "../../components/Testimonitial";
+import CTA from "../../components/CTA";
 
 export default function Home() {
   return (
@@ -121,6 +122,9 @@ export default function Home() {
       <div className="px-4 md:px-8 lg:px-12 xl:px-container">
         <Testimonitial />
       </div>
+
+      {/* cta */}
+      <CTA />
     </Layout>
   );
 }
