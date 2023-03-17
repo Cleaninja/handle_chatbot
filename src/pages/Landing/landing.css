@@ -1,0 +1,8 @@
+.use_case{
+  background-image: url('../../assets/imgs/HomePage/design-grids.png');
+  background-color: #f6f9fd;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  margin: 0 auto;
+  background-size: cover
+}

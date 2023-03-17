@@ -1,0 +1,16 @@
+.media-player-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  filter: grayscale(100%);
+  max-height: 50px;
+  max-width: 100%;
+  opacity: 0.3;
+}
+.feature{
+    padding-top: 90px;
+    padding-bottom: 90px;
+    margin: 0 auto;
+    background-size: cover
+}
