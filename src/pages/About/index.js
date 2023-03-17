@@ -4,10 +4,11 @@ import Layout from "../../components/Layout";
 import target from "../../assets/imgs/About/target-04.svg";
 import rocket from "../../assets/imgs/About/rocket-02.svg";
 import trophy from "../../assets/imgs/About/trophy-01.svg";
+import qr from "../../assets/imgs/About/image.svg";
 
 export default function About() {
   return (
-    <Layout on={ false }>
+    <Layout on={false}>
       <div className="text-center px-4 md:px-8 lg:px-12 xl:px-container">
         <h1 className="text-main-active leading-10 pt-0">About Us</h1>
         <p className="text mx-2 md:mx-10 lg:mx-28 mt-5 mb-16">
@@ -15,8 +16,8 @@ export default function About() {
           quis laoreet molestie imperdiet massa pellentesque tristique.
         </p>
       </div>
-      <div className="bg-white flex">
-        <Row>
+      <div className="bg-white flex px-4 md:px-8 lg:px-12 xl:px-container">
+        <Row justify="space-between">
           <Col sm={24} md={24} lg={12} xl={12}>
             <div className="py-16">
               <h2 className="text-main-active leading-10 ml-3">Our Mission</h2>
@@ -31,12 +32,12 @@ export default function About() {
             </div>
           </Col>
           <Col sm={24} md={24} lg={12} xl={12}>
-            <div className="pt-16">
+            <div className="mt-0 p-0 md:py-16 md:mt-5 flex justify-center">
               <video
-                className="mx-auto"
+                className="w-96 h-60"
                 src="https://file-examples.com/wp-content/uploads/2017/04/file_example_MP4_480_1_5MG.mp4"
-                width="500"
-                height="400"
+                width="384px"
+                height="240px"
                 autoPlay
                 controls
               ></video>
@@ -44,54 +45,89 @@ export default function About() {
           </Col>
         </Row>
       </div>
-      <div className="px-4 md:px-8 lg:px-12 xl:px-container">
+      <div className="px-4 py-16 md:px-8 lg:px-12 xl:px-container">
         <div className="text-center">
           <h2 className="text-main-active leading-10">Our Values</h2>
-          <p className="text">Lorem ipsum dolor sit amet consectetur.</p>
+          <p className="text py-5">Lorem ipsum dolor sit amet consectetur.</p>
         </div>
-        <div className="values-content">
-          <div className="values-content-model">
-            <div>
-              <img
-                src={target}
-                className="values-content-model-img"
-                alt="target"
-              />
-            </div>
-            <div className="values-content-title">Placeholder</div>
-            <div className="values-content-body">
-              Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet
-              consectetur.
-            </div>
-          </div>
-          <div className="values-content-model">
-            <div>
-              <img
-                src={rocket}
-                className="values-content-model-img"
-                alt="rocket"
-              />
-            </div>
-            <div className="values-content-title">Placeholder</div>
-            <div className="values-content-body">
-              Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet
-              consectetur.
-            </div>
-          </div>
-          <div className="values-content-model">
-            <div>
-              <img
-                src={trophy}
-                className="values-content-model-img"
-                alt="trophy"
-              />
-            </div>
-            <div className="values-content-title">Placeholder</div>
-            <div className="values-content-body">
-              Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet
-              consectetur.
-            </div>
-          </div>
+        <div className="flex pt-5">
+          <Row justify="space-between">
+            <Col lg={7} xl={7}>
+              <div className="text-center">
+                <div>
+                  <img src={target} className="mx-auto" alt="target" />
+                </div>
+                <h4 className="py-2">Placeholder</h4>
+                <p className="text">
+                  Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit
+                  amet consectetur.
+                </p>
+              </div>
+            </Col>
+            <Col lg={7} xl={7}>
+              <div className="text-center">
+                <div>
+                  <img src={rocket} className="mx-auto" alt="rocket" />
+                </div>
+                <h4 className="py-2">Placeholder</h4>
+                <p className="text">
+                  Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit
+                  amet consectetur.
+                </p>
+              </div>
+            </Col>
+            <Col lg={7} xl={7}>
+              <div className="text-center">
+                <div>
+                  <img src={trophy} className="mx-auto" alt="trophy" />
+                </div>
+                <h4 className="py-2">Placeholder</h4>
+                <p className="text">
+                  Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit
+                  amet consectetur.
+                </p>
+              </div>
+            </Col>
+          </Row>
+        </div>
+      </div>
+      <div className="px-4 py-4 md:px-8 lg:px-12 xl:px-container">
+        <h2 className="text-main-active text-center leading-10">Who we are?</h2>
+        <div className="flex pt-5 pb-16">
+          <Row gutter={24} justify="space-between">
+            <Col sm={24} md={24} lg={12} xl={12}>
+              <div>
+                <div>
+                  <img src={qr} alt="target" />
+                </div>
+                <h4 className="py-1">Nick Kljaic</h4>
+                <p className="capture">Co-founder & CEO</p>
+                <p className="text pb-2">----------------------------</p>
+                <p className="text">
+                  Nick Kljaic is the CEO & co-founder of Handle. He leads the
+                  strategy and overall business development at Handle. Frequent
+                  keynote speaker, panelist and contributing author. Enjoys
+                  running in Central Park and playing soccer.
+                </p>
+              </div>
+            </Col>
+            <Col sm={24} md={24} lg={12} xl={12}>
+              <div>
+                <div>
+                  <img src={qr} alt="rocket" />
+                </div>
+                <h4 className="py-1">Junjie Shi</h4>
+                <p className="capture">Co-founder & CTO</p>
+                <p className="text pb-2">----------------------------</p>
+                <p className="text">
+                  Junjie Shi is the CTO & co-founder of Handle. He is in charge
+                  of the technological vision and tech strategy at Handle. He
+                  leads the entire Handle product roadmap. Loves making complex
+                  simple. AI enthusiast.
+                </p>
+              </div>
+            </Col>
+          </Row>
         </div>
       </div>
     </Layout>
