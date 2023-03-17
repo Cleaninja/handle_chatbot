@@ -1,6 +1,8 @@
 import { Col, Row } from "antd";
 import React from "react";
 import Layout from "../../components/Layout";
+import CTA from "../../components/CTA";
+import "./About.css";
 import target from "../../assets/imgs/About/target-04.svg";
 import rocket from "../../assets/imgs/About/rocket-02.svg";
 import trophy from "../../assets/imgs/About/trophy-01.svg";
@@ -34,10 +36,8 @@ export default function About() {
           <Col sm={24} md={24} lg={12} xl={12}>
             <div className="mt-0 p-0 md:py-16 md:mt-5 flex justify-center">
               <video
-                className="w-96 h-60"
+                className="video"
                 src="https://file-examples.com/wp-content/uploads/2017/04/file_example_MP4_480_1_5MG.mp4"
-                width="384px"
-                height="240px"
                 autoPlay
                 controls
               ></video>
@@ -52,7 +52,7 @@ export default function About() {
         </div>
         <div className="flex pt-5">
           <Row justify="space-between">
-            <Col lg={7} xl={7}>
+            <Col sm={24} md={24} lg={7} xl={7}>
               <div className="text-center">
                 <div>
                   <img src={target} className="mx-auto" alt="target" />
@@ -64,7 +64,7 @@ export default function About() {
                 </p>
               </div>
             </Col>
-            <Col lg={7} xl={7}>
+            <Col sm={24} md={24} lg={7} xl={7}>
               <div className="text-center">
                 <div>
                   <img src={rocket} className="mx-auto" alt="rocket" />
@@ -76,7 +76,7 @@ export default function About() {
                 </p>
               </div>
             </Col>
-            <Col lg={7} xl={7}>
+            <Col sm={24} md={24} lg={7} xl={7}>
               <div className="text-center">
                 <div>
                   <img src={trophy} className="mx-auto" alt="trophy" />
@@ -94,13 +94,13 @@ export default function About() {
       <div className="px-4 py-4 md:px-8 lg:px-12 xl:px-container">
         <h2 className="text-main-active text-center leading-10">Who we are?</h2>
         <div className="flex pt-5 pb-16">
-          <Row gutter={24} justify="space-between">
+          <Row gutter={96} justify="space-between">
             <Col sm={24} md={24} lg={12} xl={12}>
               <div>
                 <div>
                   <img src={qr} alt="target" />
                 </div>
-                <h4 className="py-1">Nick Kljaic</h4>
+                <h4 className="pt-2 pb-1">Nick Kljaic</h4>
                 <p className="capture">Co-founder & CEO</p>
                 <p className="text pb-2">----------------------------</p>
                 <p className="text">
@@ -116,7 +116,7 @@ export default function About() {
                 <div>
                   <img src={qr} alt="rocket" />
                 </div>
-                <h4 className="py-1">Junjie Shi</h4>
+                <h4 className="pt-2 pb-1">Junjie Shi</h4>
                 <p className="capture">Co-founder & CTO</p>
                 <p className="text pb-2">----------------------------</p>
                 <p className="text">
@@ -129,6 +129,9 @@ export default function About() {
             </Col>
           </Row>
         </div>
+      </div>
+      <div className="bg-white flex px-4 md:px-8 lg:px-12 xl:px-container">
+        <CTA />
       </div>
     </Layout>
   );

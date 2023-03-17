@@ -1,0 +1,14 @@
+.photo-man {
+    position: absolute; 
+    bottom: 0px;
+    background-color: #5479F7;
+    width: 304px;
+    height: 78px; 
+    display: flex; 
+    justify-content: center;
+}
+
+.chart {
+    min-width: 500px;
+    height: 300px;
+}
