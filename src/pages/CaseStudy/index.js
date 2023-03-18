@@ -3,14 +3,14 @@ import React from "react";
 import Layout from "../../components/Layout";
 import CaseStudyCard from "../../components/CaseStudyCard";
 import CTA from "../../components/CTA";
-import "./CaseStudy.css";
+import "./casestudy.css";
 import qr from "../../assets/imgs/Case study/QRPhoto.png";
 import arrow from "../../assets/imgs/Case study/Arrow.svg";
 import chart from "../../assets/imgs/Case study/Chart.png";
 import man from "../../assets/imgs/Case study/Photo.png";
 import image76 from "../../assets/imgs/Case study/image 76.png";
 
-export default function CaseStudy({ props }) {
+export default function CaseStudy() {
   return (
     <Layout>
       <div className="text-center px-4 md:px-8 lg:px-12 xl:px-container">

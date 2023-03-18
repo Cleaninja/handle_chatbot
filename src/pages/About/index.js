@@ -2,7 +2,7 @@ import { Col, Row } from "antd";
 import React from "react";
 import Layout from "../../components/Layout";
 import CTA from "../../components/CTA";
-import "./About.css";
+import "./about.css";
 import target from "../../assets/imgs/About/target-04.svg";
 import rocket from "../../assets/imgs/About/rocket-02.svg";
 import trophy from "../../assets/imgs/About/trophy-01.svg";
