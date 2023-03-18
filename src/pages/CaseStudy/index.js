@@ -3,7 +3,7 @@ import React from "react";
 import Layout from "../../components/Layout";
 import CaseStudyCard from "../../components/CaseStudyCard";
 import CTA from "../../components/CTA";
-import "./casestudy.css";
+import "./caseStudy.css";
 import qr from "../../assets/imgs/Case study/QRPhoto.png";
 import arrow from "../../assets/imgs/Case study/Arrow.svg";
 import chart from "../../assets/imgs/Case study/Chart.png";
