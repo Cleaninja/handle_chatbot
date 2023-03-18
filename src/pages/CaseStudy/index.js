@@ -1,19 +1,20 @@
 import { Col, Row } from "antd";
 import React from "react";
 import Layout from "../../components/Layout";
+import CaseStudyCard from "../../components/CaseStudyCard";
 import CTA from "../../components/CTA";
 import "./CaseStudy.css";
-import qr from "../../assets/imgs/About/image.svg";
+import qr from "../../assets/imgs/Case study/QRPhoto.png";
 import arrow from "../../assets/imgs/Case study/Arrow.svg";
 import chart from "../../assets/imgs/Case study/Chart.png";
 import man from "../../assets/imgs/Case study/Photo.png";
 import image76 from "../../assets/imgs/Case study/image 76.png";
 
-export default function CaseStudy() {
+export default function CaseStudy({ props }) {
   return (
     <Layout on={false}>
       <div className="text-center px-4 md:px-8 lg:px-12 xl:px-container">
-        <h1 className="text-main-active leading-10 pt-0">
+        <h1 className="text-main-active leading- pt-0">
           Coding Mind Case Study
         </h1>
         <p className="text mx-2 md:mx-10 lg:mx-28 mt-5 mb-16">
@@ -40,13 +41,17 @@ export default function CaseStudy() {
             </div>
           </Col>
           <Col sm={24} md={24} lg={12} xl={12}>
-            <div className="pt-16">
-              <img className="w-full h-96" src={qr} alt="QRcode" />
+            <div className="pt-16 float-right">
+              <img src={qr} alt="QRcode" />
             </div>
           </Col>
           <Col lg={2} xl={2}>
             <div>
-              <img className="ml-20 min-w-fit hidden lg:block" src={arrow} alt="Arrow" />
+              <img
+                className="ml-20 min-w-fit hidden lg:block"
+                src={arrow}
+                alt="Arrow"
+              />
             </div>
           </Col>
           <Col sm={24} md={24} lg={18} xl={18}>
@@ -90,17 +95,13 @@ export default function CaseStudy() {
             </div>
           </Col>
           <Col sm={24} md={24} lg={12} xl={12}>
-            <div className="mt-0 py-0 md:py-16 md:mt-5 flex justify-center">
-              <img
-                className="chart"
-                src={chart}
-                alt="Chart"
-              />
+            <div className="mt-0 py-0 md:py-16 flex justify-center">
+              <img className="chart" src={chart} alt="Chart" />
             </div>
           </Col>
         </Row>
       </div>
-      <div className="bg-white flex px-4 md:px-8 lg:px-12 xl:px-container">
+      <div className="bg-white flex px-4 md:px-8 lg:px-12 xl:px-container shadow-md">
         <Row justify="space-between">
           <Col sm={24} md={24} lg={16} xl={16}>
             <div className="py-16">
@@ -118,7 +119,7 @@ export default function CaseStudy() {
               </p>
             </div>
           </Col>
-          <Col sm={24} md={24} lg={8} xl={8}>
+          <Col sm={24} md={24} lg={8} xl={8} className="w-full">
             <div className="flex justify-center">
               <img className="h-full" src={man} alt="man" />
               <div className="photo-man">
@@ -128,9 +129,25 @@ export default function CaseStudy() {
           </Col>
         </Row>
       </div>
-      <div className="bg-white flex px-4 md:px-8 lg:px-12 xl:px-container">
-        <CTA />
+      <div className="text-center px-4 md:px-8 lg:px-12 xl:px-container">
+        <h2 className="text-main-active leading-10 pt-16">
+          Related Case Studies
+        </h2>
+        <div className="py-10">
+          <Row gutter={32} justify="space-between">
+            <Col xs={24} sm={24} md={24} lg={8} xl={8}>
+              <CaseStudyCard title="Case Study" explain="Brief description" />
+            </Col>
+            <Col xs={24} sm={24} md={24} lg={8} xl={8}>
+              <CaseStudyCard title="Case Study" explain="Brief description" />
+            </Col>
+            <Col xs={24} sm={24} md={24} lg={8} xl={8}>
+              <CaseStudyCard title="Case Study" explain="Brief description" />
+            </Col>
+          </Row>
+        </div>
       </div>
+      <CTA />
     </Layout>
   );
 }
