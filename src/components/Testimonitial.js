@@ -2,10 +2,10 @@ import { ArrowLeftOutlined, ArrowRightOutlined } from "@ant-design/icons";
 import { Col, Row } from "antd";
 import React from "react";
 
-export default function Testimonitial({}) {
+export default function Testimonitial() {
   const handleChange = () => {
     console.log("here");
-  }
+  };
   return (
     <div>
       <Row gutter={[16, 16]}>
@@ -14,8 +14,14 @@ export default function Testimonitial({}) {
             How Handle helps companies grow their business
           </h2>
           <div className="flex items-center justify-start mt-10">
-            <ArrowLeftOutlined onClick={handleChange} className="text-lg hover:text-main cursor-pointer" />
-            <ArrowRightOutlined onClick={handleChange} className="text-lg ml-6 hover:text-main cursor-pointer" />
+            <ArrowLeftOutlined
+              onClick={handleChange}
+              className="text-lg hover:text-main cursor-pointer"
+            />
+            <ArrowRightOutlined
+              onClick={handleChange}
+              className="text-lg ml-6 hover:text-main cursor-pointer"
+            />
           </div>
         </Col>
         <Col sm={24} md={14} lg={14} xl={14} className="bg-white">
