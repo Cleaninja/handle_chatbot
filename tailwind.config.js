@@ -9,7 +9,7 @@ module.exports = {
         "main-active": "#2B58F1",
         "img-strok": "#9EBDFF",
         "strok-divider": "#BBBBBB",
-        "back": "f6f9fd"
+        "back": "#f6f9fd"
       },
       textColor: {
         "main": "#5479F7",

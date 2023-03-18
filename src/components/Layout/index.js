@@ -1,16 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import Footer from "./Footer";
+import FullMenu from "./FullMenu";
 import Header from "./Header";
 import "./layout.css";
 export default function Layout({ children = <></> }) {
+  const [isTrue, setIsTrue] = useState(false);
   return (
-    <div>
-      <Header />
-      <div
-        className={`pt-44`}
-      >
-        {children}
-      </div>
+    <div className="relative">
+      <FullMenu isTrue={isTrue} onIsTrue = {setIsTrue} />
+      <Header onFullMenu = {setIsTrue} />
+      <div className={`pt-44`}>{children}</div>
       <Footer />
     </div>
   );
