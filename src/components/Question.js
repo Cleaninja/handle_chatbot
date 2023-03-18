@@ -1,6 +1,6 @@
 import { DownOutlined, UpOutlined } from "@ant-design/icons";
 import React, { useState } from "react";
-import "./Question.css";
+import "./question.css";
 
 export default function Question({ title, children }) {
   const [isOpen, setOpen] = useState(false);
