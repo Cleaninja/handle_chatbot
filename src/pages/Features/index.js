@@ -21,7 +21,6 @@ import message from "../../assets/imgs/Features/message-chat-circle.svg";
 import scren from "../../assets/imgs/Features/Cbot scren.png";
 import qrimg from "../../assets/imgs/Features/QR img.png";
 import qrcode from "../../assets/imgs/Features/qr-code-02.svg";
-import "./features.css";
 
 export default function Features() {
   return (
@@ -148,7 +147,7 @@ export default function Features() {
             xl={12}
             className="hidden lg:block pt-16"
           >
-            <Input size="large" placeholder="Enter Your Email" className="custom" />
+            <Input size="large" placeholder="Enter Your Email" className="h-20" />
             <p className="text-base font-medium leading-7 text-white">
               Get your 14 day FREE trial
             </p>

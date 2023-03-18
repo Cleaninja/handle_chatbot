@@ -2,7 +2,6 @@ import { Col, Row } from "antd";
 import React from "react";
 import Layout from "../../components/Layout";
 import CTA from "../../components/CTA";
-import "./about.css";
 import target from "../../assets/imgs/About/target-04.svg";
 import rocket from "../../assets/imgs/About/rocket-02.svg";
 import trophy from "../../assets/imgs/About/trophy-01.svg";
@@ -36,7 +35,10 @@ export default function About() {
           <Col sm={24} md={24} lg={12} xl={12}>
             <div className="mt-0 p-0 md:py-16 md:mt-5 flex justify-center float-right">
               <video
-                className="video"
+                style={{
+                  minWidth: "500px",
+                  height: "250px",
+                }}
                 src="https://file-examples.com/wp-content/uploads/2017/04/file_example_MP4_480_1_5MG.mp4"
                 autoPlay
                 controls
