@@ -4,18 +4,12 @@ module.exports = {
   darkMode: false,
   theme: {
     extend: {
-      backgroundColor: {
+      colors: {
         "main": "#5479F7",
         "main-active": "#2B58F1",
         "img-strok": "#9EBDFF",
         "strok-divider": "#BBBBBB",
         "back": "#f6f9fd"
-      },
-      textColor: {
-        "main": "#5479F7",
-        "main-active": "#2B58F1",
-        "img-strok": "#9EBDFF",
-        "strok-divider": "#BBBBBB",
       },
       padding: {
         container: "186px",

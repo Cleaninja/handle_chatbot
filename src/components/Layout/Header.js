@@ -12,29 +12,29 @@ export default function Header({ onFullMenu=()=>{} }) {
           </Link>
         </div>
         <div className="md:flex items-center hidden">
-          <p className="capture pt-4 pb-4 ml-6 hover:text-gray-500 cursor-pointer">
+          <p className="pt-4 pb-4 ml-6 hover:text-gray-500 cursor-pointer text-lg">
             Features
           </p>
-          <p className="capture pt-4 pb-4 ml-4 hover:text-gray-500 cursor-pointer">
+          <Link to="/pricing"><p className="pt-4 pb-4 ml-4 hover:text-gray-500 cursor-pointer text-lg">
             Pricing
-          </p>
+          </p></Link>
           <Link to="/casestudy">
-            <p className="capture pt-4 pb-4 ml-4 hover:text-gray-500 cursor-pointer">
+            <p className="pt-4 pb-4 ml-4 hover:text-gray-500 cursor-pointer text-lg">
               Case Study
             </p>
           </Link>
           <Link to="/about">
-            <p className="capture pt-4 pb-4 ml-4 hover:text-gray-500 cursor-pointer">
+            <p className="pt-4 pb-4 ml-4 hover:text-gray-500 cursor-pointer text-lg">
               About us
             </p>
           </Link>
         </div>
       </div>
       <div className="md:flex items-center  hidden">
-        <p className="capture pt-4 pb-4 ml-4 hover:text-gray-500 cursor-pointer">
+        <p className="pt-4 pb-4 ml-4 hover:text-gray-500 cursor-pointer text-lg">
           Sign up
         </p>
-        <p className="capture pt-4 pb-4 ml-4 hover:text-gray-500 cursor-pointer">
+        <p className="pt-4 pb-4 ml-4 hover:text-gray-500 cursor-pointer text-lg">
           Sign In
         </p>
         <button className="primary-btn p-3 ml-4">Schedule demo</button>

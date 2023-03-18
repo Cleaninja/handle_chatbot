@@ -10,7 +10,7 @@ import qr from "../../assets/imgs/About/image.svg";
 
 export default function About() {
   return (
-    <Layout on={false}>
+    <Layout>
       <div className="text-center px-4 md:px-8 lg:px-12 xl:px-container">
         <h1 className="text-main-active leading-10 pt-0">About Us</h1>
         <p className="text mx-2 md:mx-10 lg:mx-28 mt-5 mb-16">

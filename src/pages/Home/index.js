@@ -119,7 +119,7 @@ export default function Home() {
       </div>
 
       {/* Testimonitial */}
-      <div className="px-4 md:px-8 lg:px-12 xl:px-container">
+      <div className="px-4 pb-20 md:px-8 lg:px-12 xl:px-container">
         <Testimonitial />
       </div>
       {/* cta */}

@@ -1,0 +1,99 @@
+[
+  {
+    "title": "499$ setup fee",
+    "business": "-",
+    "professional": true,
+    "premium": true
+  },
+  {
+    "title": "Monthly chats included",
+    "business": 500,
+    "professional": 1000,
+    "premium": "Unlimited"
+  },
+  {
+    "title": "Customizable interactive buttons",
+    "business": 10,
+    "professional": 10,
+    "premium": "Unlimited"
+  },
+  {
+    "title": "NLP-powered customer intents",
+    "business": "-",
+    "professional": 10,
+    "premium": "Unlimited"
+  },
+
+   {
+    "title": "Languages",
+    "business": "?",
+    "professional": "English and Spanish",
+    "premium": "All major languages"
+  },
+  {
+    "title": "Automated small talk capability",
+    "business": true,
+    "professional": true,
+    "premium": true
+  },
+  {
+    "title": "Pre-chat form for contact information",
+    "business": true,
+    "professional": true,
+    "premium": true
+  },
+  {
+    "title": "Automated appointment scheduling with built-in calendar",
+    "business": true,
+    "professional": true,
+    "premium": true
+  },
+  {
+    "title": "Email and WhatsApp notifications",
+    "business": true,
+    "professional": true,
+    "premium": true
+  },
+  {
+    "title": "Customizable chat box appearance",
+    "business": true,
+    "professional": true,
+    "premium": true
+  },
+  {
+    "title": "QR code for offline marketing",
+    "business": true,
+    "professional": true,
+    "premium": true
+  },
+  {
+    "title": "Combined multi-account management",
+    "business": true,
+    "professional": true,
+    "premium": true
+  },
+  {
+    "title": "System integrations",
+    "business": "-",
+    "professional": true,
+    "premium": "Customized data points"
+  },
+  {
+    "title": "Handle worry-free onboarding service",
+    "business": true,
+    "professional": true,
+    "premium": true
+  },
+  {
+    "title": "Available on any communication channel",
+    "business": true,
+    "professional": true,
+    "premium": true
+  },
+  {
+    "title": "Lead generation with specific data points",
+    "business": true,
+    "professional": true,
+    "premium": true
+  }
+]
