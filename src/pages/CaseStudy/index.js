@@ -10,7 +10,7 @@ import chart from "../../assets/imgs/Case study/Chart.png";
 import man from "../../assets/imgs/Case study/Photo.png";
 import image76 from "../../assets/imgs/Case study/image 76.png";
 
-export default function CaseStudy({ props }) {
+export default function CaseStudy() {
   return (
     <Layout on={false}>
       <div className="text-center px-4 md:px-8 lg:px-12 xl:px-container">
