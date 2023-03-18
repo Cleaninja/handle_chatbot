@@ -6,7 +6,7 @@ export default function Question({ title, children }) {
   const [isOpen, setOpen] = useState(false);
 
   return (
-    <div className="bg-white rounded-md shadow-md">
+    <div className="bg-white rounded-md shadow-md mt-2 p-2">
       <div className="accordion" onClick={() => setOpen(!isOpen)}>
         {title}
         {isOpen ? (

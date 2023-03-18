@@ -1,8 +1,9 @@
 import { CheckCircleOutlined } from "@ant-design/icons";
-import { Button, Col, Row } from "antd";
+import { Button, Col, Row, Space } from "antd";
 import React, { useState } from "react";
 import CTA from "../../components/CTA";
 import Layout from "../../components/Layout";
+import Question from "../../components/Question";
 import PopularHightlight from "./PopularHightlight";
 import PricingHeaderCard from "./PricingHeaderCard";
 import pricingItems from "./pricingItems.json";
@@ -122,6 +123,25 @@ function Pricing() {
         <div className="capture leading-9 text-center pt-4">
           If you have any questions regarding pricing, please refer to the FAQs
           below or contact us directly at support@askhandle.com
+        </div>
+        <div className="pt-8">
+          <Question
+            title="Are there any upfront costs or additional fees?"
+            children="Are there any upfront costs or additional fees?"
+          />
+          <Question
+            title="Does Handle integrate with other applications and systems?"
+            children="Does Handle integrate with other applications and systems?"
+          />
+          <Question title="Can I pay monthly?" children="Can I pay monthly?" />
+          <Question
+            title="How long are your subscriptions?"
+            children="How long are your subscriptions?"
+          />
+          <Question
+            title="Can I add more products or features at any time?"
+            children="Can I add more products or features at any time?"
+          />
         </div>
       </div>
       {/* cta */}
