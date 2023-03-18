@@ -1,5 +1,5 @@
 import { CheckCircleOutlined } from "@ant-design/icons";
-import { Button, Col, Row, Space } from "antd";
+import { Button, Col, Row } from "antd";
 import React, { useState } from "react";
 import CTA from "../../components/CTA";
 import Layout from "../../components/Layout";
