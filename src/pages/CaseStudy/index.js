@@ -3,7 +3,6 @@ import React from "react";
 import Layout from "../../components/Layout";
 import CaseStudyCard from "../../components/CaseStudyCard";
 import CTA from "../../components/CTA";
-import "./casestudy.css";
 import qr from "../../assets/imgs/Case study/QRPhoto.png";
 import arrow from "../../assets/imgs/Case study/Arrow.svg";
 import chart from "../../assets/imgs/Case study/Chart.png";
@@ -96,7 +95,11 @@ export default function CaseStudy() {
           </Col>
           <Col sm={24} md={24} lg={12} xl={12}>
             <div className="mt-0 py-0 md:py-16 flex justify-center">
-              <img className="chart" src={chart} alt="Chart" />
+              <img
+                style={{ minWidth: "500px", height: "300px" }}
+                src={chart}
+                alt="Chart"
+              />
             </div>
           </Col>
         </Row>
@@ -122,7 +125,10 @@ export default function CaseStudy() {
           <Col sm={24} md={24} lg={8} xl={8} className="w-full">
             <div className="flex justify-center">
               <img className="h-full" src={man} alt="man" />
-              <div className="photo-man">
+              <div
+                style={{ width: "304px", height: "78px" }}
+                className="photo-man absolute bottom-0 bg-main flex justify-center"
+              >
                 <img src={image76} alt="image76" />
               </div>
             </div>
