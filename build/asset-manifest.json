@@ -1,0 +1,34 @@
+{
+  "files": {
+    "main.css": "/static/css/main.1a0c7772.css",
+    "main.js": "/static/js/main.f582f967.js",
+    "static/js/787.82ea8e80.chunk.js": "/static/js/787.82ea8e80.chunk.js",
+    "static/media/Roboto-Medium.ttf": "/static/media/Roboto-Medium.7c8d04cd831df3033c8a.ttf",
+    "static/media/Roboto-Regular.ttf": "/static/media/Roboto-Regular.fc2b5060f7accec5cf74.ttf",
+    "static/media/Roboto-Bold.ttf": "/static/media/Roboto-Bold.f80816a5455d171f948d.ttf",
+    "static/media/Roboto-Light.ttf": "/static/media/Roboto-Light.333da16a3f3cc391d087.ttf",
+    "static/media/Photo.png": "/static/media/Photo.225adb874adbb5c4d3b2.png",
+    "static/media/Chart.png": "/static/media/Chart.f48f299d5918d9dcab3d.png",
+    "static/media/handle-purple.svg": "/static/media/handle-purple.a994ce3636307f22b5c16c785c07a3bb.svg",
+    "static/media/Relations bot.svg": "/static/media/Relations bot.82be78bc249f50f5fe828c3b99d45f1a.svg",
+    "static/media/Communication bot.svg": "/static/media/Communication bot.862b064f8ced33278f45d283db64dc67.svg",
+    "static/media/Data bot.svg": "/static/media/Data bot.aabf55e419e5c5d334df667ce23c7a95.svg",
+    "static/media/CTA bot.svg": "/static/media/CTA bot.8a23df672f5ec25bac7890ba660cdbaf.svg",
+    "static/media/trophy-01.svg": "/static/media/trophy-01.cf5dac76846635b78cfb39b740728a99.svg",
+    "static/media/rocket-02.svg": "/static/media/rocket-02.76afe0922b90768f0c076f011b6192f7.svg",
+    "static/media/image.svg": "/static/media/image.a5f900db68ab285c8ce81b51d2623384.svg",
+    "static/media/Arrow.svg": "/static/media/Arrow.dda054ef828fb4e71f766ab799e27abb.svg",
+    "static/media/Twitter.svg": "/static/media/Twitter.e746ddfdd093b09fdcabb4fae97aa7b8.svg",
+    "static/media/LinkedIn.svg": "/static/media/LinkedIn.14f50e8b8763fb7d2b25520d3607c80b.svg",
+    "index.html": "/index.html",
+    "static/media/target-04.svg": "/static/media/target-04.97e64c0a4f203a002747f530e50826b8.svg",
+    "static/media/Facebook.svg": "/static/media/Facebook.955b19e9390441d23a59db379f5a3611.svg",
+    "main.1a0c7772.css.map": "/static/css/main.1a0c7772.css.map",
+    "main.f582f967.js.map": "/static/js/main.f582f967.js.map",
+    "787.82ea8e80.chunk.js.map": "/static/js/787.82ea8e80.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1a0c7772.css",
+    "static/js/main.f582f967.js"
+  ]
+}
