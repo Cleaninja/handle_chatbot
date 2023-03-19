@@ -45,20 +45,20 @@ code {
 }
 
 h1 {
-  font-weight: 600 !important;
+  font-weight: 400 !important;
   font-size: 48px !important;
   line-height: 27px;
   text-align: center;
   color: #1e1e1e;
 }
 h2 {
-  font-weight: 600 !important;
+  font-weight: 400 !important;
   font-size: 38px !important;
   line-height: 27px;
   color: #1e1e1e;
 }
 h3 {
-  font-weight: 600 !important;
+  font-weight: 400 !important;
   font-size: 32px !important;
   line-height: 27px;
   color: #1e1e1e;
