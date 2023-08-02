@@ -14,3 +14,17 @@
     margin: 0 auto;
     background-size: cover
 }
+
+
+.ant-slider-rail {
+  height: 8px !important;
+}
+
+.ant-slider-track {
+  height: 8px !important;
+}
+
+.ant-slider .ant-slider-handle::after {
+  width: 16px !important;
+  height: 16px !important;
+}
