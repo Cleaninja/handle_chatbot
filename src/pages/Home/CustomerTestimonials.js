@@ -56,13 +56,27 @@ export default function CustomerTestimonials() {
         <Swiper
           effect={"fade"}
           speed={300}
-          slidesPerView={3}
+          slidesPerView={1}
           spaceBetween={20}
           loop={true}
+          breakpoints={{
+            480: {
+              slidesPerView: 2
+            },
+            768: {
+              slidesPerView: 3
+            }
+          }}
         >
           {reviews.map((item, index) => (
-            <SwiperSlide  key={index}>
-              <CustomerReview name={item?.name} review={item?.review} role={item?.role} type={item?.type} avatar={item?.avatar} />
+            <SwiperSlide key={index}>
+              <CustomerReview
+                name={item?.name}
+                review={item?.review}
+                role={item?.role}
+                type={item?.type}
+                avatar={item?.avatar}
+              />
             </SwiperSlide>
           ))}
         </Swiper>

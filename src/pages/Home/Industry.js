@@ -89,7 +89,7 @@ export default function Industry() {
         </div>
         <div className="lg:grid grid-cols-12 gap-16 pt-12 lg:pt-24 xl:pt-12">
           <div className="col-span-8">
-            <div className="grid grid-cols-3 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-6">
               {cards.map((item, index) => {
                 return (
                   <IndustryCard

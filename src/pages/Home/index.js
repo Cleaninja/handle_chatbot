@@ -86,11 +86,10 @@ export default function Home() {
               </div>
             </div>
           </Col>
-          <Col xs={24} sm={24} md={12} lg={12} className="hidden md:contents">
+          <Col xs={24} sm={24} md={24} lg={12}>
             <img
               src="./assets/imgs/home.png"
-              className="float-right"
-              width="450px"
+              className="float-right w-full"
               alt="bot-worker"
             />
           </Col>
