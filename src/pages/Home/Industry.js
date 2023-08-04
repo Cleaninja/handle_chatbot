@@ -77,8 +77,9 @@ export default function Industry() {
             </p>
             <Button
               type="primary"
-              className="border border-gray-400"
+              className="border border-gray-400 bg-transparent"
               size="large"
+              href="#faq"
             >
               <div className="flex items-center">
                 <p className="pr-2">Do you have questions?</p>{" "}
@@ -120,6 +121,7 @@ export default function Industry() {
               type="primary"
               className="bg-[#5648f6]"
               size="large"
+              href="#calculation"
             >
               <div className="flex items-center"><p className="pr-3">Book Applications Online</p> <ArrowRightOutlined /></div>
             </Button>

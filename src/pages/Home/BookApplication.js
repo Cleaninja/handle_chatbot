@@ -1,36 +1,82 @@
-import { RightOutlined } from "@ant-design/icons";
-import { Button, Checkbox, Input, Slider, Space } from "antd";
+import { Checkbox, Input, Select, Slider, Space } from "antd";
 import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import countries from "./countries.json";
 import "swiper/css";
-
 
 export default function BookApplication() {
   const questionInputs = [
     {
       question: "What kind of talent?",
       note: "Nibh elit lacus mi elit, dui maecenas vestibulum cursus. Aliquet quam cursus tortor eu a. Enim, integer pellentesque sagittis lectus aliquam sed cursus tortor, ac. Ornare quisque ullamcorper a eleifend fringilla turpis.",
+      options: [
+        { label: "Entertainer ", value: "Entertainer " },
+        { label: "Waiter / Bar", value: "Waiter / Bar" },
+        { label: "Cook ", value: "Cook " },
+      ],
     },
     {
       question: "What additional language should the applicant know?",
       note: "Nibh elit lacus mi elit, dui maecenas vestibulum cursus. Aliquet quam cursus tortor eu a. Enim, integer pellentesque sagittis lectus aliquam ",
+      options: [
+        {
+          label: "German (DE)",
+          value: "DE",
+        },
+        { label: "French (FR) ", value: "FR" },
+        { label: "Spanish (ES) ", value: "ES" },
+        { label: "Portuguese (PT) ", value: "PT" },
+        { label: "Italian (IT) ", value: "IT" },
+        { label: "Russian (RUS) ", value: "RUS" },
+        { label: "Ukrainian (UKR)", value: "UKR" },
+      ],
     },
     {
-      question: "WORK LOCATION",
+      question: "Where is the work location?",
       note: "Nibh elit lacus mi elit, dui maecenas vestibulum cursus. Aliquet quam cursus tortor eu a. Enim, integer pellentesque sagittis lectus aliquam sed cursus tortor, ac. Ornare quisque ullamcorper a eleifend fringilla turpis.",
+      mode: "multiple",
+      options: countries.map((item) => ({
+        label: item?.name,
+        value: item?.name,
+      })),
     },
     {
       question: "Where are people being recruited?",
       note: "Nibh elit lacus mi elit, dui maecenas vestibulum cursus. Aliquet quam cursus tortor eu a. Enim, integer pellentesque sagittis lectus aliquam sed cursus tortor, ac. Ornare quisque ullamcorper a eleifend fringilla turpis.",
+      defaultVal: "WorldWide",
+      mode: "multiple",
+      options: countries.map((item) => ({
+        label: item?.name,
+        value: item?.name,
+      })),
     },
     {
       question: "What benefits does the company / job offer?",
       note: "Nibh elit lacus mi elit, dui maecenas vestibulum cursus. Aliquet quam cursus tortor eu a. Enim, integer pellentesque sagittis lectus aliquam sed cursus tortor, ac. Ornare quisque ullamcorper a eleifend fringilla turpis.",
+      mode: "multiple",
+      options: [
+        {
+          label: "provided meals",
+          value: "provided meals",
+        },
+        {
+          label: "provided accommodation",
+          value: "provided accommodation",
+        },
+        {
+          label: "paid transportation",
+          value: "paid transportation",
+        },
+      ],
     },
   ];
 
-  const QuestionInput = ({ question = "", note = "" }) => {
+  const QuestionInput = ({
+    question = "",
+    note = "",
+    options = [],
+    mode = "single",
+    defaultVal = false,
+  }) => {
     return (
       <>
         {question && (
@@ -39,7 +85,16 @@ export default function BookApplication() {
               <p className="text-sm font-bold text-[0F1115]">{question}</p>
             </Space.Compact>
             <Space.Compact className="w-full">
-              <Input style={{ background: "#ECECEC" }} />
+              {defaultVal ? (
+                <Select
+                  defaultValue={defaultVal}
+                  className="w-full"
+                  mode={mode}
+                  options={options}
+                />
+              ) : (
+                <Select className="w-full" mode={mode} options={options} />
+              )}
             </Space.Compact>
             <Space.Compact>
               <p className="text-[11px]">{note}</p>
@@ -50,92 +105,13 @@ export default function BookApplication() {
     );
   };
 
-  const slides = [
-    {
-      name: "Restaurants",
-      image: "restaurant.jpg",
-    },
-    {
-      name: "Hotels",
-      image: "hotel.jpg",
-    },
-    {
-      name: "Cruise Ships",
-      image: "cruise-ship.jpg",
-    },
-    {
-      name: "Leisure resorts",
-      image: "leisure-resort.jpg",
-    },
-  ];
   return (
     <>
-      <div
-        style={{ backgroundImage: "url('./assets/imgs/cta-1.png')" }}
-        className="w-100% max-w-[1600px] mx-auto p-4 md:p-8 lg:p-10 xl:p-20 bg-[#5648f6] text-white"
-      >
-        <div className="lg:grid grid-cols-2">
-          <div>
-            <h1 className="text-6xl lg:text-[80px] !font-bold pb-2">26K+</h1>
-            <h3 className="text-2xl lg:text-3xl font-bold pb-4">
-              Over 26,000 Mediated Applicants Per Season.
-            </h3>
-            <h4 className=" text-[20px] lg:text-2xl pb-2">
-              Your Advantages Of Working With Us:
-            </h4>
-            <ul className="mb-5 list-disc pl-7">
-              <li className="">
-                <u>Quality Of Applicants</u> : 30% Applicants Become Employees
-              </li>
-              <li className="">
-                <u>Cost savings – without risk</u> : You only pay per applicant
-              </li>
-              <li className="">
-                <u>Time saving</u> : Fast deliveries (7-21 days)
-              </li>
-              <li className="">
-                <u>Flexibility</u> : Respond quickly to spikes in demand
-              </li>
-              <li className="">
-                <u>Targeted selection</u> : We only deliver the relevant
-                applicants
-              </li>
-            </ul>
-          </div>
-          <div className="lg:-mr-32">
-            <Swiper
-              effect={"fade"}
-              speed={300}
-              slidesPerView={2}
-              spaceBetween={20}
-              loop={true}
-              modules={[Autoplay, Pagination, Navigation]}
-              autoplay={{
-                delay: 1000, // Set your desired autoplay delay in milliseconds
-                disableOnInteraction: false,
-              }}
-              // onSwiper={(swiper) => setSwiper(swiper)}
-            >
-              {slides.map((item, index) => (
-                <SwiperSlide key={index}>
-                  <div>
-                  <img className="rounded-lg" src={`./assets/imgs/${item?.image}`} />
-                  <p>{item?.name}</p>
-                  </div>
-                  
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
-        </div>
-
-        <Button type="primary" className="border border-gray-400" size="large">
-          Book Applications Online <RightOutlined />
-        </Button>
-      </div>
-
       {/* Book Applicants Online */}
-      <div className="max-w-[1600px] mx-auto p-4 md:p-8 lg:p-10 xl:p-20">
+      <div
+        id="calculation"
+        className="max-w-[1600px] mx-auto p-4 md:p-8 lg:p-10 xl:p-20"
+      >
         <div className="md:grid grid-cols-10 gap-14">
           <div className="col-span-6 pb-[34px]">
             <h1
@@ -159,7 +135,7 @@ export default function BookApplication() {
                 Drag the slider 👇 to build your own bundle of
               </p>
               <div className="px-8">
-                <Slider defaultValue={30} />
+                <Slider defaultValue={30} max={300} />
               </div>
               <p className="pt-4 text-2xl font-normal">
                 $ 6,150 for 25 4,920 for = $ 246 197 per post
@@ -180,11 +156,16 @@ export default function BookApplication() {
             <Space size="large" direction="vertical">
               {questionInputs.map((item, index) => (
                 <Space.Compact key={index}>
-                  <QuestionInput question={item.question} note={item.note} />
+                  <QuestionInput
+                    question={item.question}
+                    note={item.note}
+                    options={item?.options ?? []}
+                    mode={item?.mode ?? ""}
+                    defaultVal={item?.defaultVal ?? ""}
+                  />
                 </Space.Compact>
               ))}
             </Space>
-
             <div className="mt-20">
               <div className="grid grid-cols-12 gap-3">
                 <Checkbox className="col-span-8">

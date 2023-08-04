@@ -12,7 +12,7 @@ export default function Header({ onFullMenu = () => {} }) {
         </div>
       </div>
       <div className="md:flex items-center  hidden">
-        <button className="rounded-lg border-2 border-solid border-[#524CF6] bg-[#524CF6] ml-4  px-4 py-[7px]"><p className="px-4 text-xl font-medium text-white leading-5">Start Hiring</p></button>
+        <a href="#calculation" className="rounded-lg border-2 border-solid border-[#524CF6] bg-[#524CF6] ml-4  px-4 py-[7px]"><p className="px-4 text-xl font-medium text-white leading-5">Start Hiring</p></a>
       </div>
       <MenuOutlined
         onClick={() => onFullMenu(true)}

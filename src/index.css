@@ -43,6 +43,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #f6f9fd;
   overflow-x: hidden;
+  transition: 3s;
 }
 
 code {

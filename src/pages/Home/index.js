@@ -6,6 +6,7 @@ import BookApplication from "./BookApplication";
 import "./home.css";
 import Industry from "./Industry";
 import CustomerTestimonials from "./CustomerTestimonials";
+import ApplicationBanner from "./ApplicationBanner";
 
 const faqs = [
   {
@@ -73,11 +74,11 @@ export default function Home() {
               per applicant. On request also with a video application.
             </div>
             <div className="pt-16 flex justify-start items-center">
-              <button className="rounded-lg border-2 border-solid border-[#524CF6] bg-[#524CF6] p-4">
+              <a href="#calculation" className="rounded-lg border-2 border-solid border-[#524CF6] bg-[#524CF6] p-4">
                 <p className="px-4 text-xl font-medium text-white leading-5">
                   Start Hiring
                 </p>
-              </button>
+              </a>
               <div className="pl-5">
                 <Rate value={5} />
                 <p className="text-base font-medium leading-6">
@@ -95,7 +96,7 @@ export default function Home() {
           </Col>
         </Row>
       </div>
-
+      <ApplicationBanner />
       <BookApplication />
 
       {/* Industry */}
@@ -106,7 +107,7 @@ export default function Home() {
       </div>
 
       {/* FAQ */}
-      <div className="bg-[#4F48F0] w-full p-4 md:p-8 lg:p-10 xl:p-20 text-center">
+      <div id="faq" className="bg-[#4F48F0] w-full p-4 md:p-8 lg:p-10 xl:p-20 text-center">
         <h2
           style={{ fontFamily: "Ubuntu-bold" }}
           className="text-white text-[42px] font-bold"
