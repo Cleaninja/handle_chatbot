@@ -107,7 +107,7 @@ export default function Home() {
       </div>
 
       {/* FAQ */}
-      <div id="faq" className="bg-[#4F48F0] w-full p-4 md:p-8 lg:p-10 xl:p-20 text-center">
+      <div id="faq" className="bg-[#4F48F0] max-w-[1600px] mx-auto w-full p-4 md:p-8 lg:p-10 xl:p-20 text-center">
         <h2
           style={{ fontFamily: "Ubuntu-bold" }}
           className="text-white text-[42px] font-bold"
@@ -126,7 +126,7 @@ export default function Home() {
       </div>
 
       {/* Get a custom quote / Free expert consultation */}
-      <div className="w-full p-4 md:p-8 lg:p-10 xl:p-20 text-center">
+      <div className="w-full max-w-[1600px] mx-auto p-4 md:p-8 lg:p-10 xl:p-20 text-center">
         <h2
           style={{ fontFamily: "Ubuntu-bold" }}
           className="text-[42px] font-bold"

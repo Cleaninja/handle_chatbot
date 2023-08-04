@@ -6,7 +6,7 @@ import "swiper/css";
 export default function BookApplication() {
   const [bookData, setBookData] = useState({
     count: 64,
-    recruited: ["WorldWide"],
+    recruited: "WorldWide",
   });
 
   // Price depend on the count
@@ -14,18 +14,8 @@ export default function BookApplication() {
   // 61 - 150 38€
   // 151 - 300 28€
   const perPriceOnCount = useMemo(() => {
-    return (
-      (bookData?.count < 61 ? 48 : bookData?.count < 151 ? 38 : 28) +
-      (bookData?.language ? 10 : 0) +
-      (bookData?.premiumPerApplication ? 10 : 0) +
-      (bookData?.premiumSeniorDesigner ? 10 : 0)
-    );
-  }, [
-    bookData?.count,
-    bookData?.language,
-    bookData?.premiumPerApplication,
-    bookData?.premiumSeniorDesigner,
-  ]);
+    return bookData?.count < 61 ? 48 : bookData?.count < 151 ? 38 : 28;
+  }, [bookData?.count]);
 
   // Discount percent depend on the Count
   // 20 - 60 100%
@@ -42,16 +32,17 @@ export default function BookApplication() {
   // Price without the discount amount, origin price
   const priceWithoutDiscount = useMemo(() => {
     return bookData?.count * perPriceOnCount;
-  }, [perPriceOnCount]);
+  }, [bookData?.count]);
 
   // Price that considered the discount amount
   const priceWithDiscount = useMemo(() => {
     return Math.round(priceWithoutDiscount * discountPercentOnCount);
   }, [priceWithoutDiscount]);
 
-  const handleBuy = (values) => {
-    console.log(bookData, "SSSSSSSS");
-  };
+  const handleBuy = () => {
+    
+  }
+
 
   const questionInputs = [
     {
@@ -87,8 +78,32 @@ export default function BookApplication() {
     },
 
     {
+      question: "What additional language should the applicant know?",
+      note: "Nibh elit lacus mi elit, dui maecenas vestibulum cursus. Aliquet quam cursus tortor eu a. Enim, integer pellentesque sagittis lectus aliquam ",
+      options: [
+        {
+          label: "German (DE)",
+          value: "DE",
+        },
+        { label: "French (FR) ", value: "FR" },
+        { label: "Spanish (ES) ", value: "ES" },
+        { label: "Portuguese (PT) ", value: "PT" },
+        { label: "Italian (IT) ", value: "IT" },
+        { label: "Russian (RUS) ", value: "RUS" },
+        { label: "Ukrainian (UKR)", value: "UKR" },
+      ],
+      value: bookData?.language ?? [],
+      onChange: (e) =>
+        setBookData((pre) => ({
+          ...pre,
+          language: e,
+        })),
+    },
+
+    {
       question: "Where are people being recruited?",
       note: "Nibh elit lacus mi elit, dui maecenas vestibulum cursus. Aliquet quam cursus tortor eu a. Enim, integer pellentesque sagittis lectus aliquam sed cursus tortor, ac. Ornare quisque ullamcorper a eleifend fringilla turpis.",
+      defaultVal: "WorldWide",
       mode: "multiple",
       options: countries.map((item) => ({
         label: item?.name,
@@ -126,30 +141,6 @@ export default function BookApplication() {
           benefits: e,
         })),
     },
-
-    {
-      question: "What additional language should the applicant know?",
-      note: "Nibh elit lacus mi elit, dui maecenas vestibulum cursus. Aliquet quam cursus tortor eu a. Enim, integer pellentesque sagittis lectus aliquam ",
-      options: [
-        {
-          label: "German (DE)",
-          value: "DE",
-        },
-        { label: "French (FR) ", value: "FR" },
-        { label: "Spanish (ES) ", value: "ES" },
-        { label: "Portuguese (PT) ", value: "PT" },
-        { label: "Italian (IT) ", value: "IT" },
-        { label: "Russian (RUS) ", value: "RUS" },
-        { label: "Ukrainian (UKR)", value: "UKR" },
-      ],
-      value: bookData?.language ?? "",
-      required: false,
-      onChange: (e) =>
-        setBookData((pre) => ({
-          ...pre,
-          language: e,
-        })),
-    },
   ];
 
   const QuestionInput = ({
@@ -158,7 +149,6 @@ export default function BookApplication() {
     options = [],
     mode = "single",
     value,
-    required = true,
     onChange = () => {},
   }) => {
     return (
@@ -169,25 +159,14 @@ export default function BookApplication() {
               <p className="text-sm font-bold text-[0F1115]">{question}</p>
             </Space.Compact>
             <Space.Compact className="w-full">
-              <Form.Item
+              <Select
+                aria-required
                 className="w-full"
-                name={question}
-                rules={[
-                  {
-                    required: required,
-                    message: "Please select the field.",
-                  },
-                ]}
-              >
-                <Select
-                  aria-required
-                  className="w-full"
-                  mode={mode}
-                  options={options}
-                  value={value}
-                  onChange={onChange}
-                />
-              </Form.Item>
+                mode={mode}
+                options={options}
+                value={value}
+                onChange={onChange}
+              />
             </Space.Compact>
             <Space.Compact className="w-full">
               <p className="text-[11px] w-full">{note}</p>
@@ -205,7 +184,7 @@ export default function BookApplication() {
         id="calculation"
         className="max-w-[1600px] mx-auto p-4 md:p-8 lg:p-10 xl:p-20"
       >
-        <Form onFinish={handleBuy}>
+        <Form onFinish={() => console.log()}>
           <div className="md:grid grid-cols-10 gap-14">
             <div className="col-span-6 pb-[34px]">
               <h1
@@ -258,10 +237,7 @@ export default function BookApplication() {
               </div>
             </div>
             <div className="col-span-4 flex items-center flex-row">
-              <button
-                type="submit"
-                className="sticky rounded-lg border-2 border-solid border-[#524CF6] bg-[#524CF6] py-4 w-full"
-              >
+              <button onClick={handleBuy} className="rounded-lg border-2 border-solid border-[#524CF6] bg-[#524CF6] py-4 w-full">
                 <p className="px-4 text-xl font-medium text-white leading-5">
                   Buy for € {priceWithDiscount}
                 </p>
@@ -276,9 +252,9 @@ export default function BookApplication() {
                       note={item.note}
                       options={item?.options ?? []}
                       mode={item?.mode ?? ""}
+                      defaultVal={item?.defaultVal ?? ""}
                       value={item?.value}
                       onChange={item?.onChange}
-                      required={item?.required}
                     />
                   </Space.Compact>
                 ))}
