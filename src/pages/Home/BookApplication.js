@@ -6,7 +6,7 @@ import "swiper/css";
 export default function BookApplication() {
   const [bookData, setBookData] = useState({
     count: 64,
-    recruited: "WorldWide"
+    recruited: "WorldWide",
   });
 
   // Price depend on the count
@@ -220,13 +220,13 @@ export default function BookApplication() {
                   {priceWithDiscount} for {bookData?.count}={" "}
                   {discountPercentOnCount < 1 && (
                     <span className="line-through">€ {perPriceOnCount}</span>
-                  )}
+                  )}{" "}
                   € {Math.round(priceWithDiscount / bookData?.count)} per post
                 </p>
                 {discountPercentOnCount < 1 && (
                   <p className="pt-2 text-2xl font-normal">
-                    You save € 1,230 ({100 - discountPercentOnCount * 100}%
-                    discount)
+                    You save € {priceWithoutDiscount - priceWithDiscount} (
+                    {100 - discountPercentOnCount * 100}% discount)
                   </p>
                 )}
               </div>
@@ -256,7 +256,16 @@ export default function BookApplication() {
               </Space>
               <div className="mt-20">
                 <div className="grid grid-cols-12 gap-3">
-                  <Checkbox className="col-span-8">
+                  <Checkbox
+                    checked={bookData?.premiumPerApplication ?? false}
+                    onChange={(e) =>
+                      setBookData((pre) => ({
+                        ...pre,
+                        premiumPerApplication: e?.target?.checked,
+                      }))
+                    }
+                    className="col-span-8"
+                  >
                     Get premium support and help with your job post
                     +€10/applicant
                   </Checkbox>
@@ -268,7 +277,16 @@ export default function BookApplication() {
                       </p>
                     </div>
                   </div>
-                  <Checkbox className="col-span-8">
+                  <Checkbox
+                    onChange={(e) =>
+                      setBookData((pre) => ({
+                        ...pre,
+                        premiumSeniorDesigner: e?.target?.checked,
+                      }))
+                    }
+                    checked={bookData?.premiumSeniorDesigner ?? false}
+                    className="col-span-8"
+                  >
                     Get premium support and help with your job post +$99 Senior
                     Designer
                   </Checkbox>
