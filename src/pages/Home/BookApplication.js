@@ -1,13 +1,21 @@
-import { Checkbox, Form, Input, Select, Slider, Space } from "antd";
-import React, { useEffect, useMemo, useState } from "react";
-import countries from "./countries.json";
+import { Checkbox, Form, Select, Slider, Space } from "antd";
+import React, { useMemo, useState } from "react";
+import { CardElement, Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import axios from "axios";
+
 import "swiper/css";
+import countries from "./countries.json";
 
 export default function BookApplication() {
   const [bookData, setBookData] = useState({
     count: 64,
     recruited: ["WorldWide"],
   });
+
+  const stripePromise = loadStripe(
+    "pk_test_51NbwmkBaeZH592dBokkB1ksfAs2vQvTDL6c3R1BSKCCAsQFRcJ2I820mJmej6CYjWHTpv62aAF4CvhWaSG3HZ6dU00CQp94L1V"
+  );
 
   // Price depend on the count
   // 20 - 60 48€
@@ -49,8 +57,25 @@ export default function BookApplication() {
     return Math.round(priceWithoutDiscount * discountPercentOnCount);
   }, [priceWithoutDiscount]);
 
-  const handleBuy = (values) => {
-    console.log(bookData, "SSSSSSSS");
+  const handleBuy = async () => {
+    const stripe = await stripePromise;
+    var session = "";
+    try {
+      const response = await axios.post(
+        "http://localhost:4242/create-checkout-session"
+      , { totalPrice: priceWithDiscount, currency: "eur" });
+      // Handle the response data as needed
+      session = response?.data;
+    } catch (error) {
+      console.error(error);
+    }
+    const { error } = await stripe.redirectToCheckout({
+      sessionId: session.id,
+    });
+
+    if (error) {
+      console.error(error);
+    }
   };
 
   const questionInputs = [
@@ -205,133 +230,131 @@ export default function BookApplication() {
         id="calculation"
         className="max-w-[1600px] mx-auto p-4 md:p-8 lg:p-10 xl:p-20"
       >
-        <Form onFinish={handleBuy}>
-          <div className="md:grid grid-cols-10 gap-14">
-            <div className="col-span-6 pb-[34px]">
-              <h1
-                style={{ fontFamily: "Ubuntu-bold" }}
-                className="leading-normal font-extrabold text-left text-5xl md:text-6xl md:text-[64px]"
-              >
-                Book Applicants Online
-              </h1>
-              <p
-                style={{ fontFamily: "Ubuntu-bold" }}
-                className="pt-3 text-xl font-normal leading-[30px]"
-              >
-                Select the right package and enter the requirements for the
-                applicants.
-              </p>
-            </div>
-            <div className="col-span-4"></div>
-            <div className="col-span-6">
-              <div className=" text-center">
-                <p className="pt-8 pb-2 text-2xl font-normal">
-                  Drag the slider 👇 to build your own bundle of
+        <Elements stripe={stripePromise}>
+          <Form onFinish={handleBuy}>
+            <div className="md:grid grid-cols-10 gap-14 relative md:h-[500px] overflow-auto">
+              <div className="col-span-6 pb-[34px]">
+                <h1
+                  style={{ fontFamily: "Ubuntu-bold" }}
+                  className="leading-normal font-extrabold text-left text-5xl md:text-6xl md:text-[64px]"
+                >
+                  Book Applicants Online
+                </h1>
+                <p
+                  style={{ fontFamily: "Ubuntu-bold" }}
+                  className="pt-3 text-xl font-normal leading-[30px]"
+                >
+                  Select the right package and enter the requirements for the
+                  applicants.
                 </p>
-                <div className="px-8">
-                  <Slider
-                    onChange={(e) =>
-                      setBookData((pre) => ({ ...pre, count: e }))
-                    }
-                    defaultValue={30}
-                    max={300}
-                  />
-                </div>
-                <p className="pt-4 text-2xl font-normal">
-                  {discountPercentOnCount < 1 && (
-                    <span className="line-through">
-                      € {priceWithoutDiscount} for {bookData?.count}
-                    </span>
-                  )}{" "}
-                  {priceWithDiscount} for {bookData?.count}={" "}
-                  {discountPercentOnCount < 1 && (
-                    <span className="line-through">€ {perPriceOnCount}</span>
-                  )}{" "}
-                  € {Math.round(priceWithDiscount / bookData?.count)} per post
-                </p>
-                {discountPercentOnCount < 1 && (
-                  <p className="pt-2 text-2xl font-normal">
-                    You save € {priceWithoutDiscount - priceWithDiscount} (
-                    {100 - discountPercentOnCount * 100}% discount)
+
+                <div className=" text-center">
+                  <p className="pt-8 pb-2 text-2xl font-normal">
+                    Drag the slider 👇 to build your own bundle of
                   </p>
-                )}
-              </div>
-            </div>
-            <div className="col-span-4 flex items-center flex-row">
-              <button
-                type="submit"
-                className="sticky rounded-lg border-2 border-solid border-[#524CF6] bg-[#524CF6] py-4 w-full"
-              >
-                <p className="px-4 text-xl font-medium text-white leading-5">
-                  Buy for € {priceWithDiscount}
-                </p>
-              </button>
-            </div>
-            <div className="col-span-6">
-              <Space size="large" direction="vertical" className="w-full">
-                {questionInputs.map((item, index) => (
-                  <Space.Compact key={index}>
-                    <QuestionInput
-                      question={item.question}
-                      note={item.note}
-                      options={item?.options ?? []}
-                      mode={item?.mode ?? ""}
-                      value={item?.value}
-                      onChange={item?.onChange}
-                      required={item?.required}
+                  <div className="px-8">
+                    <Slider
+                      onChange={(e) =>
+                        setBookData((pre) => ({ ...pre, count: e }))
+                      }
+                      defaultValue={30}
+                      max={300}
                     />
-                  </Space.Compact>
-                ))}
-              </Space>
-              <div className="mt-20">
-                <div className="grid grid-cols-12 gap-3">
-                  <Checkbox
-                    checked={bookData?.premiumPerApplication ?? false}
-                    onChange={(e) =>
-                      setBookData((pre) => ({
-                        ...pre,
-                        premiumPerApplication: e?.target?.checked,
-                      }))
-                    }
-                    className="col-span-8"
-                  >
-                    Get premium support and help with your job post
-                    +€10/applicant
-                  </Checkbox>
-                  <div className="col-span-4 flex items-center justify-between">
-                    <p className="text-sm font-normal">Cell Text</p>
-                    <div>
-                      <p className="text-xs rounded-[10px] bg-[#f2f4f8] px-[10px]">
-                        Badge
-                      </p>
-                    </div>
                   </div>
-                  <Checkbox
-                    onChange={(e) =>
-                      setBookData((pre) => ({
-                        ...pre,
-                        premiumSeniorDesigner: e?.target?.checked,
-                      }))
-                    }
-                    checked={bookData?.premiumSeniorDesigner ?? false}
-                    className="col-span-8"
-                  >
-                    Get premium support and help with your job post +$99 Senior
-                    Designer
-                  </Checkbox>
-                  <div className="col-span-4 flex items-center justify-between">
-                    <p className="text-sm font-normal">Cell Text</p>
-                    <div>
-                      <p className="text-xs rounded-[10px] bg-[#f2f4f8] px-[10px]">
-                        Badge
-                      </p>
+                  <p className="pt-4 text-2xl font-normal">
+                    {discountPercentOnCount < 1 && (
+                      <span className="line-through">
+                        € {priceWithoutDiscount} for {bookData?.count}
+                      </span>
+                    )}{" "}
+                    {priceWithDiscount} for {bookData?.count}={" "}
+                    {discountPercentOnCount < 1 && (
+                      <span className="line-through">€ {perPriceOnCount}</span>
+                    )}{" "}
+                    € {Math.round(priceWithDiscount / bookData?.count)} per post
+                  </p>
+                  {discountPercentOnCount < 1 && (
+                    <p className="pt-2 text-2xl font-normal">
+                      You save € {priceWithoutDiscount - priceWithDiscount} (
+                      {100 - discountPercentOnCount * 100}% discount)
+                    </p>
+                  )}
+                </div>
+                <Space size="large" direction="vertical" className="w-full">
+                  {questionInputs.map((item, index) => (
+                    <Space.Compact key={index}>
+                      <QuestionInput
+                        question={item.question}
+                        note={item.note}
+                        options={item?.options ?? []}
+                        mode={item?.mode ?? ""}
+                        value={item?.value}
+                        onChange={item?.onChange}
+                        required={item?.required}
+                      />
+                    </Space.Compact>
+                  ))}
+                </Space>
+                <div className="mt-20">
+                  <div className="grid grid-cols-12 gap-3">
+                    <Checkbox
+                      checked={bookData?.premiumPerApplication ?? false}
+                      onChange={(e) =>
+                        setBookData((pre) => ({
+                          ...pre,
+                          premiumPerApplication: e?.target?.checked,
+                        }))
+                      }
+                      className="col-span-8"
+                    >
+                      Get premium support and help with your job post
+                      +€10/applicant
+                    </Checkbox>
+                    <div className="col-span-4 flex items-center justify-between">
+                      <p className="text-sm font-normal">Cell Text</p>
+                      <div>
+                        <p className="text-xs rounded-[10px] bg-[#f2f4f8] px-[10px]">
+                          Badge
+                        </p>
+                      </div>
+                    </div>
+                    <Checkbox
+                      onChange={(e) =>
+                        setBookData((pre) => ({
+                          ...pre,
+                          premiumSeniorDesigner: e?.target?.checked,
+                        }))
+                      }
+                      checked={bookData?.premiumSeniorDesigner ?? false}
+                      className="col-span-8"
+                    >
+                      Get premium support and help with your job post +$99
+                      Senior Designer
+                    </Checkbox>
+                    <div className="col-span-4 flex items-center justify-between">
+                      <p className="text-sm font-normal">Cell Text</p>
+                      <div>
+                        <p className="text-xs rounded-[10px] bg-[#f2f4f8] px-[10px]">
+                          Badge
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
+              <div className="col-span-4">
+                <button
+                  type="submit"
+                  className="sticky top-44 rounded-lg border-2 border-solid border-[#524CF6] bg-[#524CF6] py-4 w-full"
+                >
+                  <p className="px-4 text-xl font-medium text-white leading-5">
+                    Buy for € {priceWithDiscount}
+                  </p>
+                </button>
+              </div>
             </div>
-          </div>
-        </Form>
+          </Form>
+        </Elements>
       </div>
     </>
   );

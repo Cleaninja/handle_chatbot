@@ -7,49 +7,7 @@ import "./home.css";
 import Industry from "./Industry";
 import CustomerTestimonials from "./CustomerTestimonials";
 import ApplicationBanner from "./ApplicationBanner";
-
-const faqs = [
-  {
-    title: "Who should use the app?",
-    child: "",
-  },
-  {
-    title: "What is included with my subscription?",
-    child: "",
-  },
-  {
-    title: "How do I get paid?",
-    child: "",
-  },
-  {
-    title: "Is my personal information safe?",
-    child: "",
-  },
-  {
-    title: "How can we get in touch?",
-    child: "",
-  },
-];
-
-const QuestionInput = ({ question = "", note = "" }) => {
-  return (
-    <>
-      {question && (
-        <Space direction="vertical" size="small">
-          <Space.Compact>
-            <p className="text-sm font-bold text-[0F1115]">{question}</p>
-          </Space.Compact>
-          <Space.Compact className="w-full">
-            <Input style={{ background: "#ECECEC" }} />
-          </Space.Compact>
-          <Space.Compact>
-            <p className="text-[11px]">{note}</p>
-          </Space.Compact>
-        </Space>
-      )}
-    </>
-  );
-};
+import FAQ from "./FAQ";
 
 export default function Home() {
   return (
@@ -74,7 +32,10 @@ export default function Home() {
               per applicant. On request also with a video application.
             </div>
             <div className="pt-16 flex justify-start items-center">
-              <a href="#calculation" className="rounded-lg border-2 border-solid border-[#524CF6] bg-[#524CF6] p-4">
+              <a
+                href="#calculation"
+                className="rounded-lg border-2 border-solid border-[#524CF6] bg-[#524CF6] p-4"
+              >
                 <p className="px-4 text-xl font-medium text-white leading-5">
                   Start Hiring
                 </p>
@@ -100,30 +61,13 @@ export default function Home() {
       <BookApplication />
 
       {/* Industry */}
-
       <div className="bg-[#ccd3e1] p-2">
         <Industry />
         <CustomerTestimonials />
       </div>
 
       {/* FAQ */}
-      <div id="faq" className="bg-[#4F48F0] max-w-[1600px] mx-auto w-full p-4 md:p-8 lg:p-10 xl:p-20 text-center">
-        <h2
-          style={{ fontFamily: "Ubuntu-bold" }}
-          className="text-white text-[42px] font-bold"
-        >
-          Frequently asked questions by our customers
-        </h2>
-        <Space className="w-full mt-16" direction="vertical" size={"small"}>
-          {faqs.map((item, index) => {
-            return (
-              <Space.Compact className="w-full" key={index}>
-                <Question title={item?.title} />
-              </Space.Compact>
-            );
-          })}
-        </Space>
-      </div>
+      <FAQ />
 
       {/* Get a custom quote / Free expert consultation */}
       <div className="w-full max-w-[1600px] mx-auto p-4 md:p-8 lg:p-10 xl:p-20 text-center">
