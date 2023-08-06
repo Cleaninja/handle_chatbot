@@ -50,7 +50,7 @@ export default function BookApplication() {
   // Price without the discount amount, origin price
   const priceWithoutDiscount = useMemo(() => {
     return bookData?.count * perPriceOnCount;
-  }, [perPriceOnCount]);
+  }, [perPriceOnCount, bookData?.count]);
 
   // Price that considered the discount amount
   const priceWithDiscount = useMemo(() => {
