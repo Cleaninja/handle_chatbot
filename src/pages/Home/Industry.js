@@ -40,7 +40,7 @@ export default function Industry() {
     <>
       <div
         style={{ backgroundImage: "url('./assets/imgs/cta-1.png')" }}
-        className="w-100% max-w-[1600px] mx-auto p-4 md:p-8 lg:p-10 xl:p-20 bg-[#5648f6] text-white"
+        className="w-100% mx-auto p-4 md:p-8 lg:p-10 xl:p-20 bg-[#5648f6] text-white"
       >
         <div className="lg:grid grid-cols-11 lg:gap-16">
           <div className="col-span-6">

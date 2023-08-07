@@ -41,7 +41,7 @@ export default function CustomerTestimonials() {
   ];
   return (
     <>
-      <div className="w-100% max-w-[1600px] mx-auto p-4 md:p-8 lg:p-10 xl:p-20 bg-white mt-4 text-center">
+      <div className="w-100% mx-auto p-4 md:p-8 lg:p-10 xl:p-20 bg-white mt-4 text-center">
         <Button
           type="primary"
           className="!bg-[#5648f6] !text-white"
@@ -55,7 +55,7 @@ export default function CustomerTestimonials() {
         </h3>
         <Swiper
           effect={"fade"}
-          speed={300}
+          speed={500}
           slidesPerView={1}
           spaceBetween={20}
           loop={true}

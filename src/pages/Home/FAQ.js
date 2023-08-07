@@ -42,24 +42,26 @@ export default function FAQ() {
   return (
     <div
       id="faq"
-      className="bg-[#4F48F0] max-w-[1600px] mx-auto w-full p-4 md:p-8 lg:p-10 xl:p-20 text-center"
+      className="bg-[#4F48F0] w-full p-4 md:p-8 lg:p-10 xl:p-20 text-center"
     >
-      <h2
-        style={{ fontFamily: "Ubuntu-bold" }}
-        className="text-white text-[42px] font-bold"
-      >
-        Frequently asked questions by our customers
-      </h2>
-      <Space className="w-full mt-16" direction="vertical" size={"small"}>
-        <Search size="large" onChange={(e) => setSearch(e?.target?.value)} />
-        {displayFAQs.map((item, index) => {
-          return (
-            <Space.Compact className="w-full" key={index}>
-              <Question title={item?.title} />
-            </Space.Compact>
-          );
-        })}
-      </Space>
+      <div className="max-w-[1600px] mx-auto">
+        <h2
+          style={{ fontFamily: "Ubuntu-bold" }}
+          className="text-white text-[42px] font-bold"
+        >
+          Frequently asked questions by our customers
+        </h2>
+        <Space className="w-full mt-16" direction="vertical" size={"small"}>
+          <Search size="large" onChange={(e) => setSearch(e?.target?.value)} />
+          {displayFAQs.map((item, index) => {
+            return (
+              <Space.Compact className="w-full" key={index}>
+                <Question title={item?.title} />
+              </Space.Compact>
+            );
+          })}
+        </Space>
+      </div>
     </div>
   );
 }
