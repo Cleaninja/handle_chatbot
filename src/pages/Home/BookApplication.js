@@ -6,7 +6,6 @@ import React, { useEffect, useMemo, useState } from "react";
 
 import countries from "./countries.json";
 import Cookies from "js-cookie";
-import { useNavigate } from "react-router-dom";
 
 export default function BookApplication() {
   const [bookData, setBookData] = useState({
@@ -79,27 +78,13 @@ export default function BookApplication() {
     return Math.round(priceWithoutDiscount * discountPercentOnCount);
   }, [priceWithoutDiscount]);
 
-  // Silder Max count
-  const maxCount = useMemo(() => {
-    if ((bookData?.count ?? 0) >= 300) {
-      return 300 + 50;
-    } else {
-      return 300;
-    }
-  }, [bookData?.count]);
-
   const sliderMarks = useMemo(() => {
-    if ((bookData?.count ?? 0) >= 300) {
+    if ((bookData?.count ?? 0) > 300) {
       return {
-        20: "20",
-        300: "300",
-        350: "+300",
+        301: "+300",
       };
     } else {
-      return {
-        20: "20",
-        300: "300",
-      };
+      return {};
     }
   }, [bookData?.count]);
 
@@ -107,9 +92,22 @@ export default function BookApplication() {
     const stripe = await stripePromise;
     var session = "";
     try {
+      const info =
+        bookData?.count +
+        " candidates / " +
+        bookData?.talentType +
+        " / worklocation: " +
+        bookData?.location?.join(", ") +
+        " / Recruited from: " +
+        bookData?.recruited?.join(", ") +
+        " / Benefit: " +
+        bookData?.benefits?.join(", ") +
+        " / Additional Language :" +
+        bookData?.language;
+      console.log(info);
       const response = await axios.post(
         "http://localhost:4242/create-checkout-session",
-        { totalPrice: priceWithDiscount, currency: "eur" }
+        { totalPrice: priceWithDiscount, currency: "eur", info: info }
       );
       // Handle the response data as needed
       session = response?.data;
@@ -164,8 +162,9 @@ export default function BookApplication() {
       note: "Nibh elit lacus mi elit, dui maecenas vestibulum cursus. Aliquet quam cursus tortor eu a. Enim, integer pellentesque sagittis lectus aliquam sed cursus tortor, ac. Ornare quisque ullamcorper a eleifend fringilla turpis.",
       mode: "multiple",
       options: countries.map((item) => ({
-        label: item?.name,
+        label: item?.code + " " + item?.name,
         value: item?.name,
+        disabled: item?.disabled,
       })),
       name: "location",
       onChange: (e) =>
@@ -180,8 +179,9 @@ export default function BookApplication() {
       note: "Nibh elit lacus mi elit, dui maecenas vestibulum cursus. Aliquet quam cursus tortor eu a. Enim, integer pellentesque sagittis lectus aliquam sed cursus tortor, ac. Ornare quisque ullamcorper a eleifend fringilla turpis.",
       mode: "multiple",
       options: countries.map((item) => ({
-        label: item?.name,
+        label: item?.code + " " + item?.name,
         value: item?.name,
+        disabled: item?.disabled,
       })),
       name: "recruited",
       onChange: (e) =>
@@ -197,24 +197,37 @@ export default function BookApplication() {
       mode: "multiple",
       options: [
         {
-          label: "provided meals",
-          value: "provided meals",
+          label: "Provided meals",
+          value: "Provided meals",
         },
         {
-          label: "provided accommodation",
-          value: "provided accommodation",
+          label: "Provided accommodation",
+          value: "Provided accommodation",
         },
         {
-          label: "paid transportation",
-          value: "paid transportation",
+          label: "Paid transportation",
+          value: "Paid transportation",
         },
       ],
       name: "benefits",
-      onChange: (e) =>
-        setBookData((pre) => ({
-          ...pre,
-          benefits: e,
-        })),
+      value: bookData?.benefits,
+      onChange: (e) => {
+        if (bookData?.benefits?.includes(e)) {
+          const index = bookData?.benefits.indexOf(e);
+          setBookData((pre) => ({
+            ...pre,
+            benefits: pre?.benefits?.filter(function (element) {
+              return element !== e;
+            }),
+          }));
+        } else {
+          console.log(e);
+          setBookData((pre) => ({
+            ...pre,
+            benefits: [...(pre?.benefits ?? []), e],
+          }));
+        }
+      },
     },
 
     {
@@ -255,14 +268,14 @@ export default function BookApplication() {
   }) => {
     return (
       <div className="question-box">
-        {question && (
-          <Space direction="vertical" size="small">
-            <Space.Compact>
-              <p className="text-sm sm:text- font-bold base md:text-lg text-[#0F1115]">
-                {question}
-              </p>
-            </Space.Compact>
-            <Space.Compact className="w-full">
+        <Space direction="vertical" size="small">
+          <Space.Compact>
+            <p className="text-sm sm:text- font-bold base md:text-lg text-[#0F1115]">
+              {question}
+            </p>
+          </Space.Compact>
+          <Space.Compact className="w-full">
+            {name !== "benefits" ? (
               <Form.Item
                 className="w-full"
                 name={name}
@@ -282,14 +295,29 @@ export default function BookApplication() {
                   onChange={onChange}
                 />
               </Form.Item>
-            </Space.Compact>
-            <Space.Compact className="w-full">
-              <p className="text-[11px] sm:text-sm md:text-base w-full">
-                {note}
-              </p>
-            </Space.Compact>
-          </Space>
-        )}
+            ) : (
+              <div className="py-4">
+                {options.map((item, index) => {
+                  return (
+                    <span
+                      key={index}
+                      onClick={() => onChange(item?.label)}
+                      className={`border border-gray-600 rounded-xl p-2 m-1 hover:bg-[#504af4] hover:text-white cursor-pointer ${
+                        value?.includes(item?.label) &&
+                        "bg-[#504af4] text-white"
+                      }`}
+                    >
+                      {item?.label}
+                    </span>
+                  );
+                })}
+              </div>
+            )}
+          </Space.Compact>
+          <Space.Compact className="w-full">
+            <p className="text-[11px] sm:text-sm md:text-base w-full">{note}</p>
+          </Space.Compact>
+        </Space>
       </div>
     );
   };
@@ -336,7 +364,7 @@ export default function BookApplication() {
                       trackStyle={{
                         background: "#504af4",
                       }}
-                      tooltip={{ open: bookData?.count < 300 }}
+                      tooltip={{ open: bookData?.count < 301 }}
                       onChange={(e) =>
                         setBookData((pre) => ({ ...pre, count: e }))
                       }
@@ -344,7 +372,7 @@ export default function BookApplication() {
                       name="count"
                       value={bookData?.count}
                       defaultValue={30}
-                      max={maxCount}
+                      max={301}
                       min={20}
                     />
                   </div>

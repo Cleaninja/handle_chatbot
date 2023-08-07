@@ -2,6 +2,7 @@ import { Input, Space } from "antd";
 import React, { useMemo, useState } from "react";
 import "./home.css";
 import Question from "../../components/Question";
+import { SearchOutlined } from "@ant-design/icons";
 
 const { Search } = Input;
 
@@ -52,7 +53,18 @@ export default function FAQ() {
           Frequently asked questions by our customers
         </h2>
         <Space className="w-full mt-16" direction="vertical" size={"small"}>
-          <Search size="large" onChange={(e) => setSearch(e?.target?.value)} />
+          <div className="relative">
+            <input
+              type="text"
+              onChange={(e) => setSearch(e?.target?.value)}
+              className="bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 rounded-lg py-2 px-4 block w-full appearance-none leading-normal"
+              placeholder="Search..."
+            />
+            <SearchOutlined
+              size={32}
+              className="absolute text-lg right-4 top-1/2 transform -translate-y-1/2"
+            />
+          </div>
           {displayFAQs.map((item, index) => {
             return (
               <Space.Compact className="w-full" key={index}>

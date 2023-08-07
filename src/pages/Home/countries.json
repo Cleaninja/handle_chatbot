@@ -1,16 +1,15 @@
 [
-  { "name": "WorldWide", "code": "WW" },
-  { "name": "Africa", "code": "AF" },
-  { "name": "Asia", "code": "AS" },
-  { "name": "Europe", "code": "EU" },
-  { "name": "Latin America", "code": "LA" },
-  { "name": "North America", "code": "LA" },
-  { "name": "Oceania", "code": "OC" },
-  { "name": "Middle East", "code": "ME" },
+  { "name": "REGIONS", "disabled": true, "code": "" },
+  { "name": "WorldWide", "code": "🌏" },
+  { "name": "Africa", "code": "🦁" },
+  { "name": "Asia", "code": "⛩" },
+  { "name": "Europe", "code": "🇪🇺" },
+  { "name": "Latin America", "code": "💃" },
+  { "name": "North America", "code": "⛰️" },
+  { "name": "Oceania", "code": "🌊" },
+  { "name": "Middle East", "code": "🕌" },
 
-
-
-
+  { "name": "COUNTRIES", "disabled": true, "code": "" },
   { "name": "Afghanistan", "code": "AF" },
   { "name": "Åland Islands", "code": "AX" },
   { "name": "Albania", "code": "AL" },
