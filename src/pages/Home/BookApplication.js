@@ -9,7 +9,6 @@ import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 
 export default function BookApplication() {
-  const history = useNavigate();
   const [bookData, setBookData] = useState({
     count: 64,
     recruited: ["WorldWide"],
@@ -82,10 +81,25 @@ export default function BookApplication() {
 
   // Silder Max count
   const maxCount = useMemo(() => {
-    if (bookData?.count ?? 0 > 250) {
-      return (bookData?.count / 100 + 1) * 100;
+    if ((bookData?.count ?? 0) >= 300) {
+      return 300 + 50;
     } else {
       return 300;
+    }
+  }, [bookData?.count]);
+
+  const sliderMarks = useMemo(() => {
+    if ((bookData?.count ?? 0) >= 300) {
+      return {
+        20: "20",
+        300: "300",
+        350: "+300",
+      };
+    } else {
+      return {
+        20: "20",
+        300: "300",
+      };
     }
   }, [bookData?.count]);
 
@@ -322,14 +336,16 @@ export default function BookApplication() {
                       trackStyle={{
                         background: "#504af4",
                       }}
+                      tooltip={{ open: bookData?.count < 300 }}
                       onChange={(e) =>
                         setBookData((pre) => ({ ...pre, count: e }))
                       }
+                      marks={sliderMarks}
                       name="count"
                       value={bookData?.count}
                       defaultValue={30}
-                      // max={maxCount}
-                      max={300}
+                      max={maxCount}
+                      min={20}
                     />
                   </div>
                   {bookData?.count < 301 && (

@@ -17,10 +17,8 @@ export default function Home() {
       <ApplicationBanner />
       <BookApplication />
       {/* Industry */}
-      <div className="bg-[#ccd3e1] p-2">
-        <Industry />
-        <CustomerTestimonials />
-      </div>
+      <Industry />
+      <CustomerTestimonials />
       {/* FAQ */}
       <FAQ />
       {/* Get a custom quote / Free expert consultation */}

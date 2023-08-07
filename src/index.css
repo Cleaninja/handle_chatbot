@@ -115,20 +115,3 @@ code {
     background-position: 0% 50%;
   }
 }
-
-.question-box {
-  padding: 17px;
-  border-radius: 8px;
-  border: 1px solid #00000014;
-  box-shadow: 2px 3px 5px #00000026;
-}
-
-.ant-checkbox-checked .ant-checkbox-inner {
-  background-color: #504af4; /* Change the inner background color when checkbox is checked */
-  border-color: #504af4; /* Change the border color when checkbox is checked */
-}
-
-.ant-checkbox:hover .ant-checkbox-inner,
-.ant-checkbox-input:focus + .ant-checkbox-inner {
-  border-color: #2cc131; /* Change the border color on hover and focus */
-}

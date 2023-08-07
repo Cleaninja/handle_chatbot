@@ -21,8 +21,8 @@ export default function CustomerReview({
             alt="avatar"
           />
           <div className="w-full border-t border-white text-left ml-4">
-            <p className="py-2 text-lg font-medium">{name}</p>
-            <p className="text-sm"><span>{role}</span>-<span>{type}</span></p>
+            <p className="pt-2 text-lg font-medium">{name}</p>
+            <p className="text-sm"><span>{role}</span><br /><span>{type}</span></p>
           </div>
         </div>
       </div>
