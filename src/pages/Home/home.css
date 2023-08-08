@@ -30,11 +30,26 @@
   left: -6px;
 }
 
+.ant-space-compact {
+  width: 100%;
+  font-family: "Nunito" !important;
+}
+
+.ant-space .ant-space-vertical {
+  width: 100%;
+  font-family: "Nunito" !important;
+}
+
+.ant-col {
+  font-family: "Nunito" !important;
+}
+
 .question-box {
   padding: 17px;
   border-radius: 8px;
   border: 1px solid #00000014;
   box-shadow: 2px 3px 5px #00000026;
+  font-family: "Nunito" !important;
 }
 
 .ant-checkbox-checked .ant-checkbox-inner {

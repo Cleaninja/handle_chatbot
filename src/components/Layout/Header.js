@@ -17,7 +17,7 @@ export default function Header({ onFullMenu = () => {} }) {
           </div>
         </div>
         <div className="flex items-center">
-          <Button
+          {/* <Button
             size="large"
             href="#calculation"
             className="rounded-lg border-2 bg-[#524CF6] min-w-[148px]"
@@ -25,7 +25,7 @@ export default function Header({ onFullMenu = () => {} }) {
             <p className="px-4 text-sm sm:text-base font-semibold text-white leading-5">
               Start Hiring
             </p>
-          </Button>
+          </Button> */}
         </div>
       </div>
     </div>

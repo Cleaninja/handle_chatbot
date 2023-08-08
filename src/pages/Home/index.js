@@ -9,6 +9,7 @@ import FAQ from "./FAQ";
 import Hero from "./Hero";
 import Industry from "./Industry";
 import "./home.css";
+import CookieBanner from "./CookieBanner";
 
 export default function Home() {
   return (
@@ -23,6 +24,7 @@ export default function Home() {
       <FAQ />
       {/* Get a custom quote / Free expert consultation */}
       <CustomQuote />
+      <CookieBanner/>
     </Layout>
   );
 }

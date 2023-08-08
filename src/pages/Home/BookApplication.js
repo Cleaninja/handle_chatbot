@@ -4,13 +4,13 @@ import { Button, Checkbox, Form, Select, Slider, Space } from "antd";
 import axios from "axios";
 import React, { useEffect, useMemo, useState } from "react";
 
-import countries from "./countries.json";
 import Cookies from "js-cookie";
+import countries from "./countries.json";
 
 export default function BookApplication() {
   const [bookData, setBookData] = useState({
     count: 64,
-    recruited: ["WorldWide"],
+    recruited: ["🌏 WorldWide"],
   });
   const [cookieData, setCookieData] = useState(!!Cookies.get("bookData"));
 
@@ -35,11 +35,11 @@ export default function BookApplication() {
     Cookies.remove("bookData");
     setBookData({
       count: 64,
-      recruited: ["WorldWide"],
+      recruited: ["🌏 WorldWide"],
     });
     form.setFieldsValue({
       count: 64,
-      recruited: ["WorldWide"],
+      recruited: ["🌏 WorldWide"],
     });
     setCookieData(false);
   };
@@ -88,19 +88,20 @@ export default function BookApplication() {
     try {
       const info =
         bookData?.count +
-        " candidates / " +
+        " Candidates / " +
         bookData?.talentType +
-        " / worklocation: " +
+        " / Worklocation: " +
         bookData?.location?.join(", ") +
         " / Recruited from: " +
         bookData?.recruited?.join(", ") +
-        " / Benefit: " +
-        bookData?.benefits?.join(", ") +
-        (bookData?.language
-          ? " / Additional Language :" + bookData?.language
+        (bookData?.benefits?.length > 0
+          ? " / Benefit: " + bookData?.benefits?.join(", ")
+          : "") +
+        (bookData?.language || bookData?.language !== "None"
+          ? " / Additional Language: " + bookData?.language
           : "");
       const response = await axios.post(
-        "http://localhost:4242/create-checkout-session",
+        "http://161.97.87.53:4242/create-checkout-session",
         { totalPrice: priceWithDiscount, currency: "eur", info: info }
       );
       // Handle the response data as needed
@@ -157,7 +158,18 @@ export default function BookApplication() {
       note: "Nibh elit lacus mi elit, dui maecenas vestibulum cursus. Aliquet quam cursus tortor eu a. Enim, integer pellentesque sagittis lectus aliquam sed cursus tortor, ac. Ornare quisque ullamcorper a eleifend fringilla turpis.",
       mode: "multiple",
       options: countries.map((item) => ({
-        label: item?.code + " " + item?.name,
+        label: item.code ? (
+          <div className="flex items-center justify-start">
+            <img
+              className="pr-1"
+              src={`https://flagsapi.com/${item.code}/flat/24.png`}
+              alt={item.code}
+            />
+            {item.name}
+          </div>
+        ) : (
+          item.code + item.name
+        ),
         value: item?.name,
         disabled: item?.disabled,
       })),
@@ -174,7 +186,18 @@ export default function BookApplication() {
       note: "Nibh elit lacus mi elit, dui maecenas vestibulum cursus. Aliquet quam cursus tortor eu a. Enim, integer pellentesque sagittis lectus aliquam sed cursus tortor, ac. Ornare quisque ullamcorper a eleifend fringilla turpis.",
       mode: "multiple",
       options: countries.map((item) => ({
-        label: item?.code + " " + item?.name,
+        label: item.code ? (
+          <div className="flex items-center justify-start">
+            <img
+              className="pr-1"
+              src={`https://flagsapi.com/${item.code}/flat/24.png`}
+              alt={item.code}
+            />
+            {item.name}
+          </div>
+        ) : (
+          item.code + item.name
+        ),
         value: item?.name,
         disabled: item?.disabled,
       })),
@@ -262,7 +285,7 @@ export default function BookApplication() {
     onChange = () => {},
   }) => {
     return (
-      <div className="">
+      <div className="question-box w-full">
         <Space direction="vertical" size="small">
           <Space.Compact>
             <p className="text-sm sm:text- font-bold base md:text-lg text-[#0F1115]">
@@ -334,43 +357,36 @@ export default function BookApplication() {
             >
               <div className="relative overflow-auto scroll-none">
                 <div className="pb-[34px]">
-                  <h1 className="leading-normal font-extrabold text-left text-4xl sm:text-5xl md:text-6xl md:text-[64px] text-center">
+                  <h1 className="leading-normal font-extrabold text-4xl sm:text-5xl md:text-6xl md:text-[64px] text-center font-[Nunito]">
                     Book Applicants Online
                   </h1>
-                  {/* <p className="pt-3 text-xl font-normal leading-[30px]">
-                    Select the right package and enter the requirements for the
-                    applicants.
-                  </p> */}
                   <div className="mx-auto max-w-[1200px]">
-                    <div className="text-center pb-10">
-                      <div className="text-sm sm:text-base md:text-lg flex items-center justify-center pt-8 pb-2">
+                    <div className="pb-10 question-box my-6">
+                      <div className="text-sm sm:text-base md:text-lg pt-1 pb-2">
                         <p className="font-bold text-[#0F1115] ">
-                          How many applicants do you want?
+                          HOW MANY CANDIDATES DO YOU WANT?
                         </p>
                       </div>
-
-                      <div className="px-8">
-                        <Slider
-                          trackStyle={{
-                            background: "#504af4",
-                          }}
-                          tooltip={{
-                            open: true,
-                            formatter: (e) => {
-                              return e > 300 ? "+300" : e;
-                            },
-                          }}
-                          onChange={(e) =>
-                            setBookData((pre) => ({ ...pre, count: e }))
-                          }
-                          step={5}
-                          name="count"
-                          value={bookData?.count}
-                          defaultValue={30}
-                          max={301}
-                          min={20}
-                        />
-                      </div>
+                      <Slider
+                        trackStyle={{
+                          background: "#504af4",
+                        }}
+                        tooltip={{
+                          open: true,
+                          formatter: (e) => {
+                            return e > 300 ? "+300" : e;
+                          },
+                        }}
+                        onChange={(e) =>
+                          setBookData((pre) => ({ ...pre, count: e }))
+                        }
+                        step={5}
+                        name="count"
+                        value={bookData?.count}
+                        defaultValue={30}
+                        max={301}
+                        min={20}
+                      />
                       {bookData?.count < 301 && (
                         <div className="block">
                           <p className="pt-4 text-3xl inline-block font-bold">
@@ -379,7 +395,9 @@ export default function BookApplication() {
                                 € {priceWithoutDiscount} for {bookData?.count}
                               </span>
                             )}{" "} */}
-                             {bookData?.count} candidates × € {Math.round(priceWithDiscount / bookData?.count)}= € {priceWithDiscount}
+                            {bookData?.count} candidates × €{" "}
+                            {Math.round(priceWithDiscount / bookData?.count)}= €{" "}
+                            {priceWithDiscount}
                             {/* {discountPercentOnCount < 1 && (
                               <span className="line-through">
                                 € {perPriceOnCount}
@@ -400,13 +418,20 @@ export default function BookApplication() {
                           )}
                         </div>
                       )}
+                      <p className="text-[11px] sm:text-sm md:text-base w-full pt-4">
+                        Nibh elit lacus mi elit, dui maecenas vestibulum cursus.
+                        Aliquet quam cursus tortor eu a. Enim, integer
+                        pellentesque sagittis lectus aliquam sed cursus tortor,
+                        ac. Ornare quisque ullamcorper a eleifend fringilla
+                        turpis.
+                      </p>
                     </div>
                     {bookData?.count < 301 && (
                       <>
                         <Space
                           size="large"
                           direction="vertical"
-                          className="w-full question-box"
+                          className="w-full"
                         >
                           {questionInputs.map((item, index) => (
                             <Space.Compact key={index}>
@@ -461,11 +486,11 @@ export default function BookApplication() {
                     )}
                   </div>
                 </div>
-                <div className="max-w-[1200px] left-1/2 mx-auto transform -translate-x-1/2 md:translate-x-0 fixed bottom-2 z-10 md:static w-[95%] md:w-full">
+                <div className="max-w-[1200px] left-1/2 mx-auto bottom-2 z-10 md:static w-full">
                   {(bookData?.count ?? 0) < 301 ? (
                     <button
                       type="submit"
-                      className="md:sticky md:top-44 rounded-lg border-2 border-solid cta-button py-4 w-full mx-auto"
+                      className="md:top-44 rounded-lg border-2 border-solid cta-button py-4 w-full mx-auto"
                     >
                       <p className="px-4 text-xl font-medium text-white leading-5">
                         Buy for € {priceWithDiscount}
@@ -474,7 +499,7 @@ export default function BookApplication() {
                   ) : (
                     <div
                       onClick={handleSchedule}
-                      className="md:sticky md:top-44 rounded-lg border-2 border-solid cta-button py-4 w-full cursor-pointer text-center"
+                      className="md:top-44 rounded-lg border-2 border-solid cta-button py-4 w-full cursor-pointer text-center"
                     >
                       <p className="px-4 text-xl font-medium text-white leading-5">
                         Get an enterprize quote by scheduling a call with us
