@@ -46,11 +46,11 @@ export default function FAQ() {
     >
       <div className="max-w-[1600px] mx-auto">
         <h2
-          className="text-white text-[42px] font-bold"
+          className="text-white text-4xl md:text-[42px] font-bold mt-8"
         >
           Frequently asked questions by our customers
         </h2>
-        <Space className="w-full mt-16" direction="vertical" size={"small"}>
+        <Space className="w-full mt-10 md:mt-16" direction="vertical" size={"small"}>
           <div className="relative">
             <input
               type="text"

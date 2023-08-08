@@ -30,7 +30,6 @@
   left: -6px;
 }
 
-
 .question-box {
   padding: 17px;
   border-radius: 8px;
@@ -48,7 +47,7 @@
   border-color: #2cc131; /* Change the border color on hover and focus */
 }
 
-.ant-slider .ant-slider-dot{
+.ant-slider .ant-slider-dot {
   width: 20px;
   height: 20px;
 }
@@ -57,10 +56,17 @@
   top: 12px;
 }
 
-.ant-select-selection-item-remove{
+.ant-select-selection-item-remove {
   margin-top: -3px;
+  margin-right: 2px;
 }
 
 .ant-select-selection-item {
   border-radius: 20px !important;
+}
+
+.ant-select-multiple .ant-select-selection-item-remove >.anticon {
+  border-radius: 50px;
+  background: #d3d1d1;
+  padding: 3px;
 }

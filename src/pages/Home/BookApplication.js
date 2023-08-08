@@ -21,7 +21,7 @@ export default function BookApplication() {
   );
 
   // Get Cookies
-  useEffect(async () => {
+  useEffect(() => {
     const savedData = Cookies.get("bookData");
     if (savedData) {
       setBookData(JSON.parse(savedData));
@@ -96,9 +96,9 @@ export default function BookApplication() {
         bookData?.recruited?.join(", ") +
         " / Benefit: " +
         bookData?.benefits?.join(", ") +
-        " / Additional Language :" +
-        bookData?.language;
-      console.log(info);
+        (bookData?.language
+          ? " / Additional Language :" + bookData?.language
+          : "");
       const response = await axios.post(
         "http://localhost:4242/create-checkout-session",
         { totalPrice: priceWithDiscount, currency: "eur", info: info }
@@ -143,6 +143,7 @@ export default function BookApplication() {
         { label: "Waiter / Bar", value: "Waiter / Bar" },
         { label: "Cook ", value: "Cook " },
       ],
+      value: bookData?.talentType,
       name: "talentType",
       onChange: (e) =>
         setBookData((pre) => ({
@@ -331,132 +332,136 @@ export default function BookApplication() {
               onFinish={handleBuy}
               onFinishFailed={handleFinishFailed}
             >
-              <div className="md:grid grid-cols-10 gap-14 relative md:h-[500px] overflow-auto scroll-none">
-                <div className="col-span-6 pb-[34px]">
-                  <h1 className="leading-normal font-extrabold text-left text-4xl sm:text-5xl md:text-6xl md:text-[64px]">
+              <div className="relative overflow-auto scroll-none">
+                <div className="pb-[34px]">
+                  <h1 className="leading-normal font-extrabold text-left text-4xl sm:text-5xl md:text-6xl md:text-[64px] text-center">
                     Book Applicants Online
                   </h1>
-                  <p className="pt-3 text-xl font-normal leading-[30px]">
+                  {/* <p className="pt-3 text-xl font-normal leading-[30px]">
                     Select the right package and enter the requirements for the
                     applicants.
-                  </p>
+                  </p> */}
+                  <div className="mx-auto max-w-[1200px]">
+                    <div className="text-center pb-10">
+                      <div className="text-sm sm:text-base md:text-lg flex items-center justify-center pt-8 pb-2">
+                        <p className="font-bold text-[#0F1115] ">
+                          How many applicants do you want?
+                        </p>
+                      </div>
 
-                  <div className="text-center pb-10">
-                    <div className="text-sm sm:text-base md:text-lg flex items-center justify-center pt-8 pb-2">
-                      <p className="font-bold text-[#0F1115] ">
-                        How many applicants do you want?
-                      </p>
-                    </div>
-
-                    <div className="px-8">
-                      <Slider
-                        trackStyle={{
-                          background: "#504af4",
-                        }}
-                        tooltip={{
-                          open: true,
-                          formatter: (e) => {
-                            return e > 300 ? "+300" : e;
-                          },
-                        }}
-                        onChange={(e) =>
-                          setBookData((pre) => ({ ...pre, count: e }))
-                        }
-                        step={5}
-                        name="count"
-                        value={bookData?.count}
-                        defaultValue={30}
-                        max={301}
-                        min={20}
-                      />
+                      <div className="px-8">
+                        <Slider
+                          trackStyle={{
+                            background: "#504af4",
+                          }}
+                          tooltip={{
+                            open: true,
+                            formatter: (e) => {
+                              return e > 300 ? "+300" : e;
+                            },
+                          }}
+                          onChange={(e) =>
+                            setBookData((pre) => ({ ...pre, count: e }))
+                          }
+                          step={5}
+                          name="count"
+                          value={bookData?.count}
+                          defaultValue={30}
+                          max={301}
+                          min={20}
+                        />
+                      </div>
+                      {bookData?.count < 301 && (
+                        <div className="block">
+                          <p className="pt-4 text-3xl inline-block font-bold">
+                            {/* {discountPercentOnCount < 1 && (
+                              <span className="line-through">
+                                € {priceWithoutDiscount} for {bookData?.count}
+                              </span>
+                            )}{" "} */}
+                             {bookData?.count} candidates × € {Math.round(priceWithDiscount / bookData?.count)}= € {priceWithDiscount}
+                            {/* {discountPercentOnCount < 1 && (
+                              <span className="line-through">
+                                € {perPriceOnCount}
+                              </span>
+                            )}{" "} */}
+                          </p>
+                          {discountPercentOnCount < 1 && (
+                            <p className="pt-2 text-xl font-bold inline-block sm:pl-4">
+                              <span className="text-[#2cc131]">
+                                {`(${
+                                  100 - discountPercentOnCount * 100
+                                }% discount
+                                € ${
+                                  priceWithoutDiscount - priceWithDiscount
+                                } in total saved)`}
+                              </span>
+                            </p>
+                          )}
+                        </div>
+                      )}
                     </div>
                     {bookData?.count < 301 && (
-                      <div>
-                        <p className="pt-4 text-2xl font-normal">
-                          {discountPercentOnCount < 1 && (
-                            <span className="line-through">
-                              € {priceWithoutDiscount} for {bookData?.count}
-                            </span>
-                          )}{" "}
-                          {priceWithDiscount} for {bookData?.count}={" "}
-                          {discountPercentOnCount < 1 && (
-                            <span className="line-through">
-                              € {perPriceOnCount}
-                            </span>
-                          )}{" "}
-                          € {Math.round(priceWithDiscount / bookData?.count)}{" "}
-                          per post
-                        </p>
-                        {discountPercentOnCount < 1 && (
-                          <p className="pt-2 text-2xl font-normal">
-                            You save €{" "}
-                            {priceWithoutDiscount - priceWithDiscount} (
-                            <span className="font-bold">
-                              {100 - discountPercentOnCount * 100}% discount
-                            </span>
-                            )
+                      <>
+                        <Space
+                          size="large"
+                          direction="vertical"
+                          className="w-full question-box"
+                        >
+                          {questionInputs.map((item, index) => (
+                            <Space.Compact key={index}>
+                              <QuestionInput
+                                question={item.question}
+                                note={item.note}
+                                options={item?.options ?? []}
+                                mode={item?.mode ?? ""}
+                                value={item?.value}
+                                onChange={item?.onChange}
+                                required={item?.required}
+                                name={item?.name}
+                              />
+                            </Space.Compact>
+                          ))}
+                        </Space>
+                        <Space
+                          size="middle"
+                          direction="vertical"
+                          className="w-full question-box mt-8"
+                        >
+                          <p className="text-sm sm:text- font-bold base md:text-lg text-[#0F1115]">
+                            Upsale
                           </p>
-                        )}
-                      </div>
+                          <Checkbox
+                            checked={bookData?.premiumPerApplication ?? false}
+                            onChange={(e) =>
+                              setBookData((pre) => ({
+                                ...pre,
+                                premiumPerApplication: e?.target?.checked,
+                              }))
+                            }
+                          >
+                            Get premium support and help with your job post
+                            +€10/applicant
+                          </Checkbox>
+
+                          <Checkbox
+                            onChange={(e) =>
+                              setBookData((pre) => ({
+                                ...pre,
+                                premiumSeniorDesigner: e?.target?.checked,
+                              }))
+                            }
+                            checked={bookData?.premiumSeniorDesigner ?? false}
+                          >
+                            Get premium support and help with your job post +$99
+                            Senior Designer
+                          </Checkbox>
+                        </Space>
+                      </>
                     )}
                   </div>
-                  {bookData?.count < 301 && (
-                    <>
-                      <Space
-                        size="large"
-                        direction="vertical"
-                        className="w-full question-box"
-                      >
-                        {questionInputs.map((item, index) => (
-                          <Space.Compact key={index}>
-                            <QuestionInput
-                              question={item.question}
-                              note={item.note}
-                              options={item?.options ?? []}
-                              mode={item?.mode ?? ""}
-                              value={item?.value}
-                              onChange={item?.onChange}
-                              required={item?.required}
-                              name={item?.name}
-                            />
-                          </Space.Compact>
-                        ))}
-                      </Space>
-                      <Space
-                        size="middle"
-                        direction="vertical"
-                        className="w-full question-box mt-12"
-                      >
-                        <Checkbox
-                          checked={bookData?.premiumPerApplication ?? false}
-                          onChange={(e) =>
-                            setBookData((pre) => ({
-                              ...pre,
-                              premiumPerApplication: e?.target?.checked,
-                            }))
-                          }
-                        >
-                          Get premium support and help with your job post
-                          +€10/applicant
-                        </Checkbox>
-
-                        <Checkbox
-                          onChange={(e) =>
-                            setBookData((pre) => ({
-                              ...pre,
-                              premiumSeniorDesigner: e?.target?.checked,
-                            }))
-                          }
-                          checked={bookData?.premiumSeniorDesigner ?? false}
-                        >
-                          Get premium support and help with your job post +$99
-                          Senior Designer
-                        </Checkbox>
-                      </Space>
-                    </>
-                  )}
                 </div>
-                <div className="col-span-4 left-1/2 transform -translate-x-1/2 md:translate-x-0 fixed bottom-2 z-10 md:static w-[95%]">
+                <div className="max-w-[1200px] left-1/2 mx-auto transform -translate-x-1/2 md:translate-x-0 fixed bottom-2 z-10 md:static w-[95%] md:w-full">
                   {(bookData?.count ?? 0) < 301 ? (
                     <button
                       type="submit"
