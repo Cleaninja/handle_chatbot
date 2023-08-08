@@ -56,3 +56,11 @@
 .ant-slider .ant-slider-mark-text {
   top: 12px;
 }
+
+.ant-select-selection-item-remove{
+  margin-top: -3px;
+}
+
+.ant-select-selection-item {
+  border-radius: 20px !important;
+}

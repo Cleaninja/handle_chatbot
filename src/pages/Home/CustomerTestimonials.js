@@ -40,8 +40,8 @@ export default function CustomerTestimonials() {
     },
   ];
   return (
-    <>
-      <div className="w-100% mx-auto p-4 md:p-8 lg:p-10 xl:p-20 bg-white mt-4 text-center">
+    <div className="bg-white">
+      <div className="max-w-[1600px] mx-auto p-4 md:p-8 lg:p-10 xl:p-20 mt-4 text-center">
         <Button
           type="primary"
           className="!bg-[#5648f6] !text-white"
@@ -61,11 +61,11 @@ export default function CustomerTestimonials() {
           loop={true}
           breakpoints={{
             480: {
-              slidesPerView: 2
+              slidesPerView: 2,
             },
             768: {
-              slidesPerView: 3
-            }
+              slidesPerView: 3,
+            },
           }}
         >
           {reviews.map((item, index) => (
@@ -81,6 +81,6 @@ export default function CustomerTestimonials() {
           ))}
         </Swiper>
       </div>
-    </>
+    </div>
   );
 }

@@ -26,10 +26,9 @@ export default function ApplicationBanner() {
     },
   ];
   return (
-    <>
+    <div style={{ backgroundImage: "url('./assets/imgs/cta-1.png')" }} className="w-full bg-[#5648f6]">
       <div
-        style={{ backgroundImage: "url('./assets/imgs/cta-1.png')" }}
-        className="w-100% mx-auto p-4 md:p-8 lg:p-10 xl:p-20 bg-[#5648f6] text-white"
+        className="max-w-[1600px] mx-auto p-4 md:p-8 lg:p-10 xl:p-20  text-white"
       >
         <div className="lg:grid grid-cols-2">
           <div>
@@ -89,6 +88,6 @@ export default function ApplicationBanner() {
           Book Applications Online <RightOutlined />
         </Button>
       </div>
-    </>
+    </div>
   );
 }

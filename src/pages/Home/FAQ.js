@@ -4,30 +4,29 @@ import "./home.css";
 import Question from "../../components/Question";
 import { SearchOutlined } from "@ant-design/icons";
 
-const { Search } = Input;
-
 const faqs = [
   {
     title: "Who should use the app?",
-    child: "",
+    content: "The app is designed for anyone who wants to streamline their daily tasks and increase productivity.",
   },
   {
     title: "What is included with my subscription?",
-    child: "",
+    content: "Your subscription includes access to all premium features, priority customer support, and regular updates.",
   },
   {
     title: "How do I get paid?",
-    child: "",
+    content: "You will receive payment directly to your preferred bank account or through a supported payment gateway.",
   },
   {
     title: "Is my personal information safe?",
-    child: "",
+    content: "Yes, we take the security of your personal information very seriously. We have implemented robust security measures to ensure your data remains protected.",
   },
   {
     title: "How can we get in touch?",
-    child: "",
+    content: "You can reach out to us through our contact form on our website or by emailing us at support@example.com.",
   },
 ];
+
 
 export default function FAQ() {
   const [search, setSearch] = useState("");
@@ -47,7 +46,6 @@ export default function FAQ() {
     >
       <div className="max-w-[1600px] mx-auto">
         <h2
-          style={{ fontFamily: "Ubuntu-bold" }}
           className="text-white text-[42px] font-bold"
         >
           Frequently asked questions by our customers
@@ -68,7 +66,7 @@ export default function FAQ() {
           {displayFAQs.map((item, index) => {
             return (
               <Space.Compact className="w-full" key={index}>
-                <Question title={item?.title} />
+                <Question title={item?.title} content={item?.content} />
               </Space.Compact>
             );
           })}

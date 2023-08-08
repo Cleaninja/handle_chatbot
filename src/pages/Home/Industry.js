@@ -37,15 +37,14 @@ export default function Industry() {
     },
   ];
   return (
-    <>
+    <div style={{ backgroundImage: "url('./assets/imgs/cta-1.png')" }} className="bg-[#5648f6]" >
       <div
-        style={{ backgroundImage: "url('./assets/imgs/cta-1.png')" }}
-        className="w-100% mx-auto p-4 md:p-8 lg:p-10 xl:p-20 bg-[#5648f6] text-white"
+        className="max-w-[1600px] mx-auto p-4 md:p-8 lg:p-10 xl:p-20  text-white"
       >
         <div className="lg:grid grid-cols-11 lg:gap-16">
           <div className="col-span-6">
             <img
-              className="rounded-xl xl:rounded-3xl"
+              className="rounded-xl xl:rounded-3xl w-[60%] lg:w-full mx-auto"
               src="./assets/imgs/woman-02.jpg"
             />
           </div>
@@ -65,7 +64,6 @@ export default function Industry() {
               />
             </div>
             <h2
-              style={{ fontFamily: "Ubuntu-bold" }}
               className="pt-4 text-3xl font-bold"
             >
               Recruiting 100% Tourism-Jobs.
@@ -88,7 +86,7 @@ export default function Industry() {
             </Button>
           </div>
         </div>
-        <div className="lg:grid grid-cols-12 gap-16 pt-12 lg:pt-24 xl:pt-12">
+        <div className="lg:grid grid-cols-12 gap-16 pt-12 lg:pt-16 xl:pt-12">
           <div className="col-span-8">
             <div className="grid grid-cols-2 lg:grid-cols-3 gap-6">
               {cards.map((item, index) => {
@@ -103,7 +101,7 @@ export default function Industry() {
               })}
             </div>
           </div>
-          <div className="col-span-4 lg:-mt-[100px] lg:h-[calc(100% + 97px)] bg-white rounded-2xl xl:rounded-3xl mt-6 p-8 text-center lg:text-left">
+          <div className="col-span-4 lg:-mt-[80px] lg:h-[calc(100% + 97px)] bg-white rounded-2xl xl:rounded-3xl mt-6 p-8 text-center lg:text-left">
             <h1 className="text-6xl lg:text-[80px] !font-bold pb-2 text-[#5648f6]">
               26K+
             </h1>
@@ -128,6 +126,6 @@ export default function Industry() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
