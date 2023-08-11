@@ -19,7 +19,7 @@ export default function Home() {
   }, []);
 
   const getPublicKey = async () => {
-    const res = await axios.post("http://localhost:4242/get-stripe-pk");
+    const res = await axios.post("http://161.97.87.53:4242/get-stripe-pk");
     setPublicKey(res?.data?.publicKey ?? "");
   };
 
