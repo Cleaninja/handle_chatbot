@@ -7,7 +7,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import Cookies from "js-cookie";
 import countries from "./countries.json";
 
-export default function BookApplication() {
+export default function BookApplication({ publicKey = "" }) {
   const [bookData, setBookData] = useState({
     count: 64,
     recruited: ["🌏 WorldWide"],
@@ -16,9 +16,7 @@ export default function BookApplication() {
 
   const [form] = Form.useForm();
 
-  const stripePromise = loadStripe(
-    "pk_test_51NbwmkBaeZH592dBokkB1ksfAs2vQvTDL6c3R1BSKCCAsQFRcJ2I820mJmej6CYjWHTpv62aAF4CvhWaSG3HZ6dU00CQp94L1V"
-  );
+  const stripePromise = loadStripe(publicKey);
 
   // Get Cookies
   useEffect(() => {
@@ -27,7 +25,6 @@ export default function BookApplication() {
       setBookData(JSON.parse(savedData));
       form.setFieldsValue(JSON.parse(savedData));
     }
-    // const res = await axios.post("http://localhost:4242/get-stripe-pk");
   }, []);
 
   // Remove Cookies
