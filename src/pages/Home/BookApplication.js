@@ -97,23 +97,25 @@ export default function BookApplication({ publicKey = "" }) {
         (bookData?.language || bookData?.language !== "None"
           ? " / Additional Language: " + bookData?.language
           : "");
-      const response = await axios.post(
-        "/api/create-checkout-session",
-        { totalPrice: priceWithDiscount, currency: "eur", info: info }
-      );
+      const response = await axios.post("/api/create-checkout-session", {
+        totalPrice: priceWithDiscount,
+        currency: "eur",
+        info: info,
+      });
       // Handle the response data as needed
       session = response?.data;
+
+      // Save Cookies
+      Cookies.set("bookData", JSON.stringify(bookData));
+      const { error } = await stripe.redirectToCheckout({
+        sessionId: session.id,
+      });
+
+      if (error) {
+        console.error(error);
+      }
+      
     } catch (error) {
-      console.error(error);
-    }
-
-    // Save Cookies
-    Cookies.set("bookData", JSON.stringify(bookData));
-    const { error } = await stripe.redirectToCheckout({
-      sessionId: session.id,
-    });
-
-    if (error) {
       console.error(error);
     }
   };
