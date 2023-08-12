@@ -112,11 +112,10 @@ export default function BookApplication({ publicKey = "" }) {
       });
 
       if (error) {
-        console.error(error);
+        console.log(error);
       }
-      
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   };
 
