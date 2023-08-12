@@ -103,10 +103,10 @@ export default function BookApplication({ publicKey = "" }) {
         info: info,
       });
       // Handle the response data as needed
-      session = response?.data;
+      const { data: session } = response;
 
-      // Save Cookies
-      Cookies.set("bookData", JSON.stringify(bookData));
+      console.log(session?.id, "SESSION ID");
+
       const { error } = await stripe.redirectToCheckout({
         sessionId: session.id,
       });
@@ -117,6 +117,8 @@ export default function BookApplication({ publicKey = "" }) {
     } catch (error) {
       console.log(error);
     }
+    // Save Cookies
+    Cookies.set("bookData", JSON.stringify(bookData || {}));
   };
 
   const handleSchedule = () => {
