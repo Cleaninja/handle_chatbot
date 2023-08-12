@@ -19,7 +19,7 @@ export default function Home() {
   }, []);
 
   const getPublicKey = async () => {
-    const res = await axios.post("/api/get-stripe-pk");
+    const res = await axios.get("/api/get-stripe-pk");
     setPublicKey(res?.data?.publicKey ?? "");
   };
 
