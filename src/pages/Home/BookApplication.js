@@ -81,7 +81,6 @@ export default function BookApplication({ publicKey = "" }) {
 
   const handleBuy = async () => {
     const stripe = await stripePromise;
-    var session = "";
     try {
       const info =
         bookData?.count +
@@ -97,10 +96,12 @@ export default function BookApplication({ publicKey = "" }) {
         (bookData?.language || bookData?.language !== "None"
           ? " / Additional Language: " + bookData?.language
           : "");
-      const response = await axios.post("/api/create-checkout-session", {
-        totalPrice: priceWithDiscount,
-        currency: "eur",
-        info: info,
+      const response = await axios.get("/api/create-checkout-session", {
+        params: {
+          totalPrice: priceWithDiscount,
+          currency: "eur",
+          info: info,
+        },
       });
       // Handle the response data as needed
       const { data: session } = response;
