@@ -98,7 +98,7 @@ export default function BookApplication({ publicKey = "" }) {
           ? " / Additional Language: " + bookData?.language
           : "");
       const response = await axios.post(
-        "http://16.170.231.2:8080/create-checkout-session",
+        "/api/create-checkout-session",
         { totalPrice: priceWithDiscount, currency: "eur", info: info }
       );
       // Handle the response data as needed
